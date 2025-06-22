@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Eye } from 'lucide-react';
@@ -31,9 +32,9 @@ const HeroSection: React.FC = () => {
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Gradient Background Shapes */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-gradient-to-r from-teal-400 to-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse dark:mix-blend-screen dark:opacity-20"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000 dark:mix-blend-screen dark:opacity-20"></div>
+        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-gradient-to-r from-teal-400 to-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000 dark:mix-blend-screen dark:opacity-20"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
@@ -44,7 +45,7 @@ const HeroSection: React.FC = () => {
           className="text-center lg:text-left"
         >
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-blue-400/30 text-sm font-medium mb-4">
               👋 Available for new opportunities
             </span>
           </motion.div>
@@ -67,7 +68,7 @@ const HeroSection: React.FC = () => {
 
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 mb-8 max-w-lg"
+            className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg"
           >
             I create beautiful, interactive web experiences with modern technologies. 
             Passionate about clean code, user experience, and bringing ideas to life.
@@ -87,7 +88,7 @@ const HeroSection: React.FC = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-gray-300 hover:border-gray-400 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+              className="border-2 border-gray-300 hover:border-gray-400 dark:border-gray-600 dark:hover:border-gray-500 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
             >
               <Download className="mr-2" size={20} />
               Download Resume
@@ -110,7 +111,7 @@ const HeroSection: React.FC = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        <ChevronDown size={32} className="text-gray-400" />
+        <ChevronDown size={32} className="text-gray-400 dark:text-gray-500" />
       </motion.div>
     </section>
   );

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +35,7 @@ const Navigation: React.FC = () => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass backdrop-blur-lg border-b border-white/20' 
+          ? 'glass backdrop-blur-lg border-b border-white/20 dark:border-gray-800/20' 
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -55,7 +56,7 @@ const Navigation: React.FC = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 hover:text-gray-900 transition-colors relative"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors relative"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -71,11 +72,12 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.label}
                 href={social.href}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0, x: 20 }}
