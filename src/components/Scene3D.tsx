@@ -18,7 +18,6 @@ const RotatingCube: React.FC = () => {
     <mesh ref={meshRef} scale={[1.5, 1.5, 1.5]}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial 
-        attach="material"
         color="#667eea" 
         wireframe={false}
         metalness={0.7}
