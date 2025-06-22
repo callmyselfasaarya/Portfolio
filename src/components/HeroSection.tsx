@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Eye } from 'lucide-react';
@@ -54,7 +55,7 @@ const HeroSection: React.FC = () => {
             className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
           >
             Hi, I'm{' '}
-            <span className="gradient-text">Aarya</span>
+            <span className="gradient-text">Alex</span>
             <br />
             <motion.span
               initial={{ opacity: 0 }}
