@@ -40,7 +40,7 @@ const SkillsSection: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,8 +48,8 @@ const SkillsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Skills & Expertise</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Skills & Expertise</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             I continuously expand my skill set to stay current with the latest technologies 
             and best practices in web development.
           </p>
@@ -62,7 +62,7 @@ const SkillsSection: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: categoryIndex * 0.2, duration: 0.6 }}
-              className="glass rounded-xl p-6"
+              className="glass rounded-xl p-6 dark:bg-gray-800/20 dark:border-gray-700/30"
             >
               <h3 className="text-xl font-bold mb-6 text-center gradient-text">
                 {category.title}
@@ -80,10 +80,10 @@ const SkillsSection: React.FC = () => {
                     }}
                   >
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.level}%</span>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">{skill.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <motion.div
                         className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
                         initial={{ width: 0 }}

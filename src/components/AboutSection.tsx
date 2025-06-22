@@ -28,7 +28,7 @@ const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,8 +36,8 @@ const AboutSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">About Me</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">About Me</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             I'm a passionate frontend developer with 3+ years of experience creating 
             engaging digital experiences. I love turning complex problems into simple, 
             beautiful, and intuitive designs.
@@ -50,27 +50,27 @@ const AboutSection: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold mb-6">My Journey</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">My Journey</h3>
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2"></div>
                 <div>
-                  <h4 className="font-semibold">Started Programming (2020)</h4>
-                  <p className="text-gray-600">Fell in love with JavaScript and web development</p>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">Started Programming (2020)</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Fell in love with JavaScript and web development</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2"></div>
                 <div>
-                  <h4 className="font-semibold">First Professional Role (2022)</h4>
-                  <p className="text-gray-600">Joined as a Junior Frontend Developer</p>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">First Professional Role (2022)</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Joined as a Junior Frontend Developer</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2"></div>
                 <div>
-                  <h4 className="font-semibold">Present Day</h4>
-                  <p className="text-gray-600">Senior Frontend Developer with expertise in React, TypeScript, and modern web technologies</p>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">Present Day</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Senior Frontend Developer with expertise in React, TypeScript, and modern web technologies</p>
                 </div>
               </div>
             </div>
@@ -88,11 +88,11 @@ const AboutSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="glass rounded-lg p-6 text-center hover:scale-105 transition-transform duration-300"
+                className="glass rounded-lg p-6 text-center hover:scale-105 transition-transform duration-300 dark:bg-gray-800/20 dark:border-gray-700/30"
               >
                 <feature.icon className="mx-auto mb-4 text-blue-500" size={32} />
-                <h4 className="font-semibold mb-2">{feature.title}</h4>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+                <h4 className="font-semibold mb-2 text-gray-900 dark:text-white">{feature.title}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
