@@ -61,30 +61,30 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             I'm always interested in new opportunities and exciting projects. 
             Let's discuss how we can work together!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold mb-6">Let's start a conversation</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Let's start a conversation</h3>
             
-            <div className="space-y-6 mb-8">
+            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
               {contactInfo.map((info, index) => (
                 <motion.a
                   key={info.label}
@@ -92,12 +92,12 @@ const ContactSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="flex items-center space-x-4 p-4 glass rounded-lg hover:scale-105 transition-transform duration-300"
+                  className="flex items-center space-x-4 p-3 sm:p-4 glass rounded-lg hover:scale-105 transition-transform duration-300"
                 >
-                  <info.icon className="text-blue-500" size={24} />
+                  <info.icon className="text-blue-500 flex-shrink-0" size={20} />
                   <div>
-                    <p className="font-medium">{info.label}</p>
-                    <p className="text-gray-600">{info.value}</p>
+                    <p className="font-medium text-sm sm:text-base">{info.label}</p>
+                    <p className="text-gray-600 text-sm sm:text-base">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
@@ -107,10 +107,10 @@ const ContactSection: React.FC = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="glass rounded-lg p-6"
+              className="glass rounded-lg p-4 sm:p-6"
             >
-              <h4 className="font-semibold mb-2">Why work with me?</h4>
-              <ul className="text-gray-600 space-y-2">
+              <h4 className="font-semibold mb-2 text-sm sm:text-base">Why work with me?</h4>
+              <ul className="text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>• 3+ years of professional experience</li>
                 <li>• Strong focus on user experience</li>
                 <li>• Clean, maintainable code</li>
@@ -124,9 +124,9 @@ const ContactSection: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="glass rounded-xl p-8"
+            className="glass rounded-xl p-4 sm:p-6 lg:p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Name
@@ -166,11 +166,11 @@ const ContactSection: React.FC = () => {
                 <Textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={4}
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -188,7 +188,7 @@ const ContactSection: React.FC = () => {
                   />
                 ) : (
                   <>
-                    <Send className="mr-2" size={20} />
+                    <Send className="mr-2" size={18} />
                     Send Message
                   </>
                 )}

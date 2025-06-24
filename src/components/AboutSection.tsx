@@ -75,7 +75,7 @@ const AboutSection: React.FC = () => {
       x: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 100,
       },
@@ -106,7 +106,7 @@ const AboutSection: React.FC = () => {
       scale: 1,
       rotateX: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 100,
       },
@@ -114,41 +114,37 @@ const AboutSection: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <motion.h2 
-            className="text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+            className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
             whileHover={{ 
-              scale: 1.05,
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
+              scale: 1.05
             }}
           >
             About Me
           </motion.h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             I'm a passionate frontend developer with 3+ years of experience creating 
             engaging digital experiences using cutting-edge technologies like React, 
             Three.js, Framer Motion, and modern JavaScript (ES6+).
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <motion.div
             variants={timelineVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">My Journey</h3>
-            <div className="space-y-8">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-gray-900 dark:text-white">My Journey</h3>
+            <div className="space-y-6 sm:space-y-8">
               {[
                 {
                   year: '2020',
@@ -184,12 +180,12 @@ const AboutSection: React.FC = () => {
                       boxShadow: "0 0 20px rgba(102, 126, 234, 0.6)"
                     }}
                   />
-                  <div>
-                    <motion.div className="flex items-center space-x-2 mb-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">{item.title}</h4>
-                      <span className="text-sm text-blue-500 font-medium">({item.year})</span>
+                  <div className="flex-1">
+                    <motion.div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 mb-1">
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">{item.title}</h4>
+                      <span className="text-xs sm:text-sm text-blue-500 font-medium">({item.year})</span>
                     </motion.div>
-                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors">
                       {item.description}
                     </p>
                   </div>
@@ -202,13 +198,13 @@ const AboutSection: React.FC = () => {
             variants={featureGridVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-3 sm:gap-4"
           >
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 variants={featureVariants}
-                className={`glass rounded-lg p-4 text-center cursor-pointer transition-all duration-300 dark:bg-gray-800/20 dark:border-gray-700/30 ${
+                className={`glass rounded-lg p-3 sm:p-4 text-center cursor-pointer transition-all duration-300 dark:bg-gray-800/20 dark:border-gray-700/30 ${
                   hoveredFeature === index ? 'scale-105 shadow-2xl' : ''
                 }`}
                 onMouseEnter={() => setHoveredFeature(index)}
@@ -221,20 +217,20 @@ const AboutSection: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
-                  className={`mx-auto mb-3 w-12 h-12 rounded-full ${feature.bgColor} flex items-center justify-center`}
+                  className={`mx-auto mb-2 sm:mb-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full ${feature.bgColor} flex items-center justify-center`}
                   animate={hoveredFeature === index ? {
                     rotate: [0, 10, -10, 0],
                     scale: [1, 1.1, 1]
                   } : {}}
                   transition={{ duration: 0.5 }}
                 >
-                  <feature.icon className={feature.color} size={24} />
+                  <feature.icon className={feature.color} size={20} />
                 </motion.div>
-                <h4 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm">
+                <h4 className="font-semibold mb-1 sm:mb-2 text-gray-900 dark:text-white text-xs sm:text-sm">
                   {feature.title}
                 </h4>
                 <motion.p 
-                  className="text-xs text-gray-600 dark:text-gray-300"
+                  className="text-xs text-gray-600 dark:text-gray-300 leading-tight"
                   animate={hoveredFeature === index ? {
                     opacity: [0.7, 1, 0.7]
                   } : {}}

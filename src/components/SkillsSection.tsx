@@ -70,7 +70,7 @@ const SkillsSection: React.FC = () => {
       scale: 1,
       rotateX: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 100,
         duration: 0.6,
@@ -89,7 +89,7 @@ const SkillsSection: React.FC = () => {
       x: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 25,
         stiffness: 120,
       },
@@ -97,27 +97,23 @@ const SkillsSection: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <motion.h2 
-            className="text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+            className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
             whileHover={{ 
-              scale: 1.05,
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
+              scale: 1.05
             }}
           >
             Skills & Expertise
           </motion.h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             I continuously expand my skill set to stay current with the latest technologies 
             and best practices in modern web development, focusing on interactive experiences 
             and cutting-edge JavaScript frameworks.
@@ -125,7 +121,7 @@ const SkillsSection: React.FC = () => {
         </motion.div>
 
         <motion.div 
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -134,7 +130,7 @@ const SkillsSection: React.FC = () => {
             <motion.div
               key={category.title}
               variants={categoryVariants}
-              className="glass rounded-xl p-6 dark:bg-gray-800/20 dark:border-gray-700/30 hover:shadow-2xl transition-shadow duration-300"
+              className="glass rounded-xl p-4 sm:p-6 dark:bg-gray-800/20 dark:border-gray-700/30 hover:shadow-2xl transition-shadow duration-300"
               whileHover={{ 
                 scale: 1.02,
                 y: -5,
@@ -142,13 +138,13 @@ const SkillsSection: React.FC = () => {
               }}
             >
               <motion.h3 
-                className={`text-xl font-bold mb-6 text-center bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
+                className={`text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-center bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
                 whileHover={{ scale: 1.05 }}
               >
                 {category.title}
               </motion.h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
@@ -160,7 +156,7 @@ const SkillsSection: React.FC = () => {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <motion.span 
-                        className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                        className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
                         animate={hoveredSkill === skill.name ? {
                           scale: [1, 1.05, 1]
                         } : {}}
@@ -169,7 +165,7 @@ const SkillsSection: React.FC = () => {
                         {skill.name}
                       </motion.span>
                       <motion.span 
-                        className="text-sm text-gray-500 dark:text-gray-400 font-mono"
+                        className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-mono"
                         animate={hoveredSkill === skill.name ? {
                           color: ["#6B7280", "#3B82F6", "#6B7280"]
                         } : {}}
@@ -179,9 +175,9 @@ const SkillsSection: React.FC = () => {
                       </motion.span>
                     </div>
                     
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-2 overflow-hidden">
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3 mb-2 overflow-hidden">
                       <motion.div
-                        className={`h-3 rounded-full bg-gradient-to-r ${category.gradient} relative`}
+                        className={`h-2 sm:h-3 rounded-full bg-gradient-to-r ${category.gradient} relative`}
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : {}}
                         transition={{ 
