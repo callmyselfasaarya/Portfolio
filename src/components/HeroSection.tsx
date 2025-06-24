@@ -75,19 +75,6 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const sparkleVariants = {
-    animate: {
-      scale: [1, 1.5, 1],
-      rotate: [0, 180, 360],
-      opacity: [0.3, 1, 0.3],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   // Interactive button handlers with modern JS
   const handleViewProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ 
@@ -163,8 +150,16 @@ const HeroSection: React.FC = () => {
               left: `${20 + i * 15}%`,
               top: `${10 + i * 20}%`,
             }}
-            variants={sparkleVariants}
-            animate="animate"
+            animate={{
+              scale: [1, 1.5, 1],
+              rotate: [0, 180, 360],
+              opacity: [0.3, 1, 0.3],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
           >
@@ -277,7 +272,6 @@ const HeroSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 100 }}
           className="h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] relative order-1 lg:order-2"
           variants={floatingVariants}
-          animate="animate"
           style={{ y: y1 }}
         >
           <Scene3D />
