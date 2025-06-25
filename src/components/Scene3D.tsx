@@ -2,13 +2,33 @@
 import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
 import { Mesh, CanvasTexture } from 'three';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const InteractiveGeometry: React.FC = () => {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const { theme } = useTheme();
 
-  // Create gradient texture for the cube
+  // Theme-based color schemes
+  const colorSchemes = useMemo(() => ({
+    light: {
+      cube: ['#667eea', '#764ba2', '#f093fb'],
+      sphere1: ['#667eea', '#764ba2'],
+      sphere2: ['#764ba2', '#f093fb'],
+      sphere3: ['#f093fb', '#667eea']
+    },
+    dark: {
+      cube: ['#4f46e5', '#7c3aed', '#ec4899'],
+      sphere1: ['#4f46e5', '#7c3aed'],
+      sphere2: ['#7c3aed', '#ec4899'],
+      sphere3: ['#ec4899', '#4f46e5']
+    }
+  }), []);
+
+  const currentColors = colorSchemes[theme];
+
+  // Create gradient texture for the cube based on theme
   const cubeTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 256;
@@ -17,16 +37,16 @@ const InteractiveGeometry: React.FC = () => {
     
     if (context) {
       const gradient = context.createLinearGradient(0, 0, 256, 256);
-      gradient.addColorStop(0, '#667eea');
-      gradient.addColorStop(0.5, '#764ba2');
-      gradient.addColorStop(1, '#f093fb');
+      gradient.addColorStop(0, currentColors.cube[0]);
+      gradient.addColorStop(0.5, currentColors.cube[1]);
+      gradient.addColorStop(1, currentColors.cube[2]);
       
       context.fillStyle = gradient;
       context.fillRect(0, 0, 256, 256);
     }
     
     return new CanvasTexture(canvas);
-  }, []);
+  }, [currentColors.cube]);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -61,7 +81,7 @@ const InteractiveGeometry: React.FC = () => {
 
   return (
     <>
-      {/* Main rotating cube with gradient texture */}
+      {/* Main rotating cube with theme-based gradient texture */}
       <mesh
         ref={meshRef}
         scale={[1.5, 1.5, 1.5]}
@@ -78,10 +98,10 @@ const InteractiveGeometry: React.FC = () => {
         />
       </mesh>
 
-      {/* Orbiting spheres with gradient textures */}
-      <OrbitingSphere position={[3, 0, 0]} speed={1} gradientColors={['#667eea', '#764ba2']} />
-      <OrbitingSphere position={[-3, 0, 0]} speed={-1.5} gradientColors={['#764ba2', '#f093fb']} />
-      <OrbitingSphere position={[0, 3, 0]} speed={2} gradientColors={['#f093fb', '#667eea']} />
+      {/* Orbiting spheres with theme-based gradient textures */}
+      <OrbitingSphere position={[3, 0, 0]} speed={1} gradientColors={currentColors.sphere1} />
+      <OrbitingSphere position={[-3, 0, 0]} speed={-1.5} gradientColors={currentColors.sphere2} />
+      <OrbitingSphere position={[0, 3, 0]} speed={2} gradientColors={currentColors.sphere3} />
     </>
   );
 };
@@ -135,17 +155,35 @@ const OrbitingSphere: React.FC<{
 };
 
 const Scene3D: React.FC = () => {
+  const { theme } = useTheme();
+
+  // Theme-based lighting colors
+  const lightingColors = useMemo(() => ({
+    light: {
+      pointLight1: '#667eea',
+      pointLight2: '#764ba2',
+      spotLight: '#f093fb'
+    },
+    dark: {
+      pointLight1: '#4f46e5',
+      pointLight2: '#7c3aed',
+      spotLight: '#ec4899'
+    }
+  }), []);
+
+  const currentLighting = lightingColors[theme];
+
   return (
     <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
       <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#667eea" />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#764ba2" />
+      <pointLight position={[10, 10, 10]} intensity={1} color={currentLighting.pointLight1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color={currentLighting.pointLight2} />
       <spotLight
         position={[0, 10, 0]}
         angle={0.3}
         penumbra={1}
         intensity={0.8}
-        color="#f093fb"
+        color={currentLighting.spotLight}
       />
       <InteractiveGeometry />
     </Canvas>
