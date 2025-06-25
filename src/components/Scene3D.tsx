@@ -71,7 +71,7 @@ const InteractiveGeometry: React.FC = () => {
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial
-          map={cubeTexture}
+          {...({ map: cubeTexture } as any)}
           metalness={0.7}
           roughness={0.3}
           wireframe={false}
@@ -126,7 +126,7 @@ const OrbitingSphere: React.FC<{
     <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[0.3, 32, 32]} />
       <meshStandardMaterial 
-        map={sphereTexture}
+        {...({ map: sphereTexture } as any)}
         metalness={0.8} 
         roughness={0.2} 
       />
