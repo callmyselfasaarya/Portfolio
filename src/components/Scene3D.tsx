@@ -10,19 +10,19 @@ const InteractiveGeometry: React.FC = () => {
   const [clicked, setClicked] = useState(false);
   const { theme } = useTheme();
 
-  // Theme-based color schemes
+  // Theme-based color schemes with proper tuple typing
   const colorSchemes = useMemo(() => ({
     light: {
-      cube: ['#667eea', '#764ba2', '#f093fb'],
-      sphere1: ['#667eea', '#764ba2'],
-      sphere2: ['#764ba2', '#f093fb'],
-      sphere3: ['#f093fb', '#667eea']
+      cube: ['#667eea', '#764ba2', '#f093fb'] as const,
+      sphere1: ['#667eea', '#764ba2'] as [string, string],
+      sphere2: ['#764ba2', '#f093fb'] as [string, string],
+      sphere3: ['#f093fb', '#667eea'] as [string, string]
     },
     dark: {
-      cube: ['#4f46e5', '#7c3aed', '#ec4899'],
-      sphere1: ['#4f46e5', '#7c3aed'],
-      sphere2: ['#7c3aed', '#ec4899'],
-      sphere3: ['#ec4899', '#4f46e5']
+      cube: ['#4f46e5', '#7c3aed', '#ec4899'] as const,
+      sphere1: ['#4f46e5', '#7c3aed'] as [string, string],
+      sphere2: ['#7c3aed', '#ec4899'] as [string, string],
+      sphere3: ['#ec4899', '#4f46e5'] as [string, string]
     }
   }), []);
 
