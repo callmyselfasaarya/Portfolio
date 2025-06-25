@@ -1,42 +1,38 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A modern e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      title: 'Image Classification CNN',
+      description: 'A deep convolutional neural network built with TensorFlow for classifying images across 1000+ categories. Achieved 92% accuracy on ImageNet validation set with custom data augmentation techniques.',
+      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop',
+      technologies: ['TensorFlow', 'Python', 'OpenCV', 'NumPy'],
       github: '#',
-      live: '#',
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-      technologies: ['Vue.js', 'Socket.io', 'Express', 'PostgreSQL'],
+      title: 'Natural Language Sentiment Analyzer',
+      description: 'Advanced sentiment analysis model using BERT transformers and attention mechanisms. Processes social media data to classify emotions and sentiment with 94% accuracy across multiple languages.',
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop',
+      technologies: ['PyTorch', 'Transformers', 'BERT', 'Hugging Face'],
       github: '#',
-      live: '#',
     },
     {
-      title: 'AI-Powered Chat App',
-      description: 'An intelligent chat application that integrates OpenAI\'s GPT for smart conversations, with a beautiful and intuitive user interface.',
-      image: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=600&h=400&fit=crop',
-      technologies: ['React', 'OpenAI API', 'Firebase', 'Tailwind CSS'],
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'Data Visualization Dashboard',
-      description: 'An interactive dashboard for data visualization with charts, graphs, and real-time data updates. Perfect for business analytics.',
+      title: 'Predictive Analytics Dashboard',
+      description: 'Machine learning pipeline for time series forecasting and anomaly detection. Uses LSTM networks and ensemble methods to predict market trends and identify unusual patterns in real-time data.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      technologies: ['React', 'D3.js', 'Python', 'FastAPI'],
+      technologies: ['Scikit-learn', 'Pandas', 'LSTM', 'Plotly'],
       github: '#',
-      live: '#',
+    },
+    {
+      title: 'Computer Vision Object Detection',
+      description: 'Real-time object detection system using YOLO v8 architecture. Capable of identifying and tracking multiple objects simultaneously with bounding box predictions and confidence scores.',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop',
+      technologies: ['YOLO', 'OpenCV', 'PyTorch', 'CUDA'],
+      github: '#',
     },
   ];
 
@@ -49,10 +45,10 @@ const ProjectsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Machine Learning Projects</h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills and experience 
-            in frontend development, UI/UX design, and modern web technologies.
+            Explore my machine learning and AI projects showcasing deep learning, computer vision, 
+            natural language processing, and predictive analytics implementations.
           </p>
         </motion.div>
 
@@ -89,21 +85,14 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <div className="flex justify-center">
                   <Button
                     variant="outline"
                     size="sm"
                     className="flex items-center justify-center gap-2 text-xs sm:text-sm"
                   >
                     <Github size={14} />
-                    Code
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-xs sm:text-sm"
-                  >
-                    <ExternalLink size={14} />
-                    Live Demo
+                    View Code
                   </Button>
                 </div>
               </div>
