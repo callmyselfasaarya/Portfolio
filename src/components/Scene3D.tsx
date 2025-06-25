@@ -1,12 +1,32 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Mesh, CanvasTexture } from 'three';
 
 const InteractiveGeometry: React.FC = () => {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
+
+  // Create gradient texture for the cube
+  const cubeTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    const context = canvas.getContext('2d');
+    
+    if (context) {
+      const gradient = context.createLinearGradient(0, 0, 256, 256);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(0.5, '#764ba2');
+      gradient.addColorStop(1, '#f093fb');
+      
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 256, 256);
+    }
+    
+    return new CanvasTexture(canvas);
+  }, []);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -41,7 +61,7 @@ const InteractiveGeometry: React.FC = () => {
 
   return (
     <>
-      {/* Main rotating cube */}
+      {/* Main rotating cube with gradient texture */}
       <mesh
         ref={meshRef}
         scale={[1.5, 1.5, 1.5]}
@@ -51,27 +71,46 @@ const InteractiveGeometry: React.FC = () => {
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial
-          color={hovered ? "#764ba2" : clicked ? "#f093fb" : "#667eea"}
+          map={cubeTexture}
           metalness={0.7}
           roughness={0.3}
           wireframe={false}
         />
       </mesh>
 
-      {/* Orbiting spheres */}
-      <OrbitingSphere position={[3, 0, 0]} speed={1} color="#667eea" />
-      <OrbitingSphere position={[-3, 0, 0]} speed={-1.5} color="#764ba2" />
-      <OrbitingSphere position={[0, 3, 0]} speed={2} color="#f093fb" />
+      {/* Orbiting spheres with gradient textures */}
+      <OrbitingSphere position={[3, 0, 0]} speed={1} gradientColors={['#667eea', '#764ba2']} />
+      <OrbitingSphere position={[-3, 0, 0]} speed={-1.5} gradientColors={['#764ba2', '#f093fb']} />
+      <OrbitingSphere position={[0, 3, 0]} speed={2} gradientColors={['#f093fb', '#667eea']} />
     </>
   );
 };
 
-const OrbitingSphere: React.FC<{ position: [number, number, number]; speed: number; color: string }> = ({ 
-  position, 
-  speed, 
-  color 
-}) => {
+const OrbitingSphere: React.FC<{ 
+  position: [number, number, number]; 
+  speed: number; 
+  gradientColors: [string, string] 
+}> = ({ position, speed, gradientColors }) => {
   const meshRef = useRef<Mesh>(null);
+
+  // Create gradient texture for each sphere
+  const sphereTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    const context = canvas.getContext('2d');
+    
+    if (context) {
+      const gradient = context.createRadialGradient(128, 128, 0, 128, 128, 128);
+      gradient.addColorStop(0, gradientColors[0]);
+      gradient.addColorStop(1, gradientColors[1]);
+      
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 256, 256);
+    }
+    
+    return new CanvasTexture(canvas);
+  }, [gradientColors]);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -86,7 +125,11 @@ const OrbitingSphere: React.FC<{ position: [number, number, number]; speed: numb
   return (
     <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[0.3, 32, 32]} />
-      <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
+      <meshStandardMaterial 
+        map={sphereTexture}
+        metalness={0.8} 
+        roughness={0.2} 
+      />
     </mesh>
   );
 };
