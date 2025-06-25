@@ -11,43 +11,43 @@ const AboutSection: React.FC = () => {
   const features = [
     {
       icon: Code,
-      title: 'Clean Code',
-      description: 'Writing maintainable, scalable, and efficient code with modern ES6+ features',
+      title: 'Programming',
+      description: 'Learning modern programming languages like Python, JavaScript, and frameworks',
       color: 'text-blue-500',
       bgColor: 'bg-blue-500/10',
     },
     {
       icon: Lightbulb,
-      title: 'Innovation',
-      description: 'Always exploring new technologies like Three.js, Framer Motion, and creative solutions',
+      title: 'AI & ML',
+      description: 'Passionate about machine learning algorithms, neural networks, and AI applications',
       color: 'text-yellow-500',
       bgColor: 'bg-yellow-500/10',
     },
     {
       icon: Users,
       title: 'Collaboration',
-      description: 'Working effectively with teams using modern development workflows and tools',
+      description: 'Eager to work in teams and contribute to open-source projects in AI/ML domain',
       color: 'text-green-500',
       bgColor: 'bg-green-500/10',
     },
     {
       icon: Coffee,
-      title: 'Dedication',
-      description: 'Passionate about continuous learning and improvement in web technologies',
+      title: 'Learning',
+      description: 'Constantly exploring new technologies, research papers, and industry trends',
       color: 'text-orange-500',
       bgColor: 'bg-orange-500/10',
     },
     {
       icon: Zap,
-      title: 'Performance',
-      description: 'Optimizing applications for speed and efficiency using latest web standards',
+      title: 'Problem Solving',
+      description: 'Applying algorithmic thinking and data structures to solve complex problems',
       color: 'text-purple-500',
       bgColor: 'bg-purple-500/10',
     },
     {
       icon: Heart,
-      title: 'User Focus',
-      description: 'Creating delightful user experiences with interactive animations and smooth transitions',
+      title: 'Innovation',
+      description: 'Building projects that combine creativity with cutting-edge AI technologies',
       color: 'text-pink-500',
       bgColor: 'bg-pink-500/10',
     },
@@ -131,9 +131,9 @@ const AboutSection: React.FC = () => {
             About Me
           </motion.h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
-            I'm a passionate frontend developer with 3+ years of experience creating 
-            engaging digital experiences using cutting-edge technologies like React, 
-            Three.js, Framer Motion, and modern JavaScript (ES6+).
+            I'm a Computer Science student passionate about Artificial Intelligence and Machine Learning. 
+            As a fresher entering the tech industry, I'm excited to apply my knowledge in AI/ML, 
+            data science, and modern web technologies to create innovative solutions.
           </p>
         </motion.div>
 
@@ -147,24 +147,24 @@ const AboutSection: React.FC = () => {
             <div className="space-y-6 sm:space-y-8">
               {[
                 {
-                  year: '2020',
-                  title: 'Started Programming',
-                  description: 'Fell in love with JavaScript and modern web development, exploring ES6+ features'
+                  year: '2021',
+                  title: 'Started Computer Science',
+                  description: 'Began my CS journey, discovering programming fundamentals and algorithmic thinking'
                 },
                 {
                   year: '2022',
-                  title: 'First Professional Role',
-                  description: 'Joined as a Junior Frontend Developer, working with React and modern tooling'
+                  title: 'Discovered AI & ML',
+                  description: 'Fell in love with machine learning concepts, neural networks, and data science'
                 },
                 {
                   year: '2023',
-                  title: 'Specialized in Animations',
-                  description: 'Mastered Framer Motion, Three.js, and interactive web experiences'
+                  title: 'Built First Projects',
+                  description: 'Created machine learning models and web applications using modern frameworks'
                 },
                 {
                   year: '2024',
-                  title: 'Present Day',
-                  description: 'Senior Frontend Developer creating immersive web applications with cutting-edge technologies'
+                  title: 'Ready for Industry',
+                  description: 'Seeking opportunities to apply AI/ML skills in real-world projects and contribute to innovation'
                 }
               ].map((item, index) => (
                 <motion.div
@@ -240,7 +240,7 @@ const AboutSection: React.FC = () => {
                 </motion.p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
