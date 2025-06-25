@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Code, Coffee, Lightbulb, Users, Zap, Heart } from 'lucide-react';
@@ -240,7 +239,7 @@ const AboutSection: React.FC = () => {
                 </motion.p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
