@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
-import { Mesh, CanvasTexture } from 'three';
+import { Mesh, CanvasTexture, MeshBasicMaterial } from 'three';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const InteractiveGeometry: React.FC = () => {
@@ -37,8 +37,8 @@ const InteractiveGeometry: React.FC = () => {
     
     if (context) {
       const gradient = context.createLinearGradient(0, 0, 256, 256);
-      gradient.addColorStop(0, currentColors.cube[0]);
-      gradient.addColorStop(0.5, currentColors.cube[1]);
+      gradient.addColorStop(0, currentColors.cube[2]);
+      gradient.addColorStop(0, currentColors.cube[1]);
       gradient.addColorStop(1, currentColors.cube[2]);
       
       context.fillStyle = gradient;
@@ -90,18 +90,13 @@ const InteractiveGeometry: React.FC = () => {
         onPointerOut={handlePointerOut}
       >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial
-          {...({ map: cubeTexture } as any)}
-          metalness={0.7}
-          roughness={0.3}
-          wireframe={false}
-        />
+        <meshBasicMaterial map={cubeTexture as THREE.Texture} />
       </mesh>
 
       {/* Orbiting spheres with theme-based gradient textures */}
       <OrbitingSphere position={[3, 0, 0]} speed={1} gradientColors={currentColors.sphere1} />
-      <OrbitingSphere position={[-3, 0, 0]} speed={-1.5} gradientColors={currentColors.sphere2} />
-      <OrbitingSphere position={[0, 3, 0]} speed={2} gradientColors={currentColors.sphere3} />
+      <OrbitingSphere position={[-3, -2, 0]} speed={-1.5} gradientColors={currentColors.sphere2} />
+      <OrbitingSphere position={[0, 2, 0]} speed={2} gradientColors={currentColors.sphere3} />
     </>
   );
 };
@@ -144,12 +139,10 @@ const OrbitingSphere: React.FC<{
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.3, 32, 32]} />
-      <meshStandardMaterial 
-        {...({ map: sphereTexture } as any)}
-        metalness={0.8} 
-        roughness={0.2} 
-      />
+      <sphereGeometry args={[0.5, 32, 32]} />
+      <meshBasicMaterial map={sphereTexture} />
+
+
     </mesh>
   );
 };

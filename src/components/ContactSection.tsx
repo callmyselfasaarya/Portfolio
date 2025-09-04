@@ -19,18 +19,23 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
+  
+    // ✅ Log collected data
+    console.log("Form Data Collected:", formData);
+  
+    // Simulate form submission delay
     await new Promise(resolve => setTimeout(resolve, 1000));
-
+  
     toast({
       title: "Message sent!",
       description: "Thank you for your message. I'll get back to you soon!",
     });
-
+  
+    // Reset fields
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
   };
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -43,19 +48,19 @@ const ContactSection: React.FC = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex@example.com',
-      href: 'mailto:alex@example.com',
+      value: 'thisisaarya29@gmail.com',
+      href: 'mailto:thisisaarya29@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+91 99445 53388',
+      href: 'tel:+919944553388',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Salem, India',
       href: '#',
     },
   ];
@@ -109,9 +114,9 @@ const ContactSection: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="glass rounded-lg p-4 sm:p-6"
             >
-              <h4 className="font-semibold mb-2 text-sm sm:text-base">Why work with me?</h4>
+              <h4 className="font-semibold mb-2 text-sm sm:text-base">Why work with me ?</h4>
               <ul className="text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
-                <li>• 3+ years of professional experience</li>
+                <li>• Quick learn and adaptablity to the environment</li>
                 <li>• Strong focus on user experience</li>
                 <li>• Clean, maintainable code</li>
                 <li>• Excellent communication skills</li>

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Menu, X, Target, Instagram } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => {
@@ -26,12 +26,12 @@ const Navigation: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/callmyselfasaarya', label: 'GitHub'},
+    { icon: Instagram, href: 'https://www.instagram.com/aaryuah', label: 'Instagram' },    { icon: Linkedin, href: 'https://www.linkedin.com/in/aarya-lekshmanan/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3Bd4igoC%2B5TfSU5j4ZpUQduQ%3D%3D', label: 'LinkedIn' },
     { icon: Mail, href: '#contact', label: 'Email' },
+    
   ];
-
+  
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
     if (href.startsWith('#')) {
@@ -57,7 +57,8 @@ const Navigation: React.FC = () => {
             className="text-xl sm:text-2xl font-bold gradient-text"
             whileHover={{ scale: 1.05 }}
           >
-            Portfolio
+          Portfolio
+            
           </motion.div>
 
           {/* Desktop Navigation */}

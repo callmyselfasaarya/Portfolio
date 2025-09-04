@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 const HeroSection: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = 'Frontend Developer';
+  const fullText = 'Data Analyst';
   const { scrollY } = useScroll();
   
   // Parallax transforms
@@ -84,10 +84,12 @@ const HeroSection: React.FC = () => {
   };
 
   const handleDownloadResume = () => {
-    // Simulated download with modern fetch API
-    console.log('Resume download initiated...');
-    // In real app: fetch('/resume.pdf').then(...)
+    const link = document.createElement("a");
+    link.href = "public/My_Resume.pdf";   // file inside public/
+    link.download = "CV.pdf"; // name of the file when downloaded
+    link.click();
   };
+  
 
   return (
     <motion.section 

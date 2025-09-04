@@ -30,7 +30,7 @@ const ProjectsSection: React.FC = () => {
     {
       title: 'Computer Vision Object Detection',
       description: 'Real-time object detection system using YOLO v8 architecture. Capable of identifying and tracking multiple objects simultaneously with bounding box predictions and confidence scores.',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop',
+      image: 'https://www.shutterstock.com/shutterstock/photos/2244549565/display_1500/stock-vector-vector-human-eye-illustration-made-by-halftone-patter-2244549565.jpg',
       technologies: ['YOLO', 'OpenCV', 'PyTorch', 'CUDA'],
       github: '#',
     },
@@ -45,7 +45,7 @@ const ProjectsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Machine Learning Projects</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Projects</h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Explore my machine learning and AI projects showcasing deep learning, computer vision, 
             natural language processing, and predictive analytics implementations.

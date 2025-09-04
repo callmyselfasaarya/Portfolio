@@ -50,20 +50,20 @@ export const timelineData = [
   {
     year: '2021',
     title: 'Started Computer Science',
-    description: 'Began my CS journey, discovering programming fundamentals and algorithmic thinking'
+    description: 'Began my CS journey higher secondary education, discovering basic programming fundamentals and algorithmic thinking'
   },
   {
-    year: '2022',
+    year: '2023',
     title: 'Discovered AI & ML',
     description: 'Fell in love with machine learning concepts, neural networks, and data science'
   },
   {
-    year: '2023',
+    year: '2025',
     title: 'Built First Projects',
     description: 'Created machine learning models and web applications using modern frameworks'
   },
   {
-    year: '2024',
+    year: '2027',
     title: 'Ready for Industry',
     description: 'Seeking opportunities to apply AI/ML skills in real-world projects and contribute to innovation'
   }
