@@ -9,7 +9,7 @@ const SkillsSection: React.FC = () => {
 
   const skillCategories = [
     {
-      title: 'Frontend & JavaScript',
+      title: 'Web Development',
       gradient: 'from-blue-500 to-cyan-500',
       skills: [
         { name: 'React & Hooks', level: 10, description: 'Advanced React patterns, custom hooks, context API' },
