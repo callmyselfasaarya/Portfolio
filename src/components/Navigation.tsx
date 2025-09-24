@@ -56,7 +56,7 @@ const Navigation: React.FC = () => {
             className="text-xl sm:text-2xl font-bold gradient-text"
             whileHover={{ scale: 1.05 }}
           >
-          Portfolio
+          Aarya Lekshmanan
             
           </motion.div>
 

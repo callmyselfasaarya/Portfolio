@@ -10,7 +10,7 @@ const ProjectsSection: React.FC = () => {
       description: 'A modern, responsive portfolio website built with React, TypeScript, and Three.js. Features interactive 3D elements, smooth animations, and a clean design showcasing my projects and skills.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
       technologies: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
-      github: 'https://github.com/yourusername/portfolio',
+      github: 'https://github.com/callmyselfasaarya/visual-narrative-01',
       live: 'https://yourportfolio.com',
     },
     {
