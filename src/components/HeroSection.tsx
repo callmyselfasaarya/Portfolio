@@ -3,17 +3,19 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown, Download, Eye, Sparkles } from 'lucide-react';
 import Scene3D from './Scene3D';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const HeroSection: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const fullText = 'Data Analyst';
   const { scrollY } = useScroll();
+  const isMobile = useIsMobile();
   
   // Parallax transforms
-  const y1 = useTransform(scrollY, [0, 300], [0, -150]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y1 = useTransform(scrollY, isMobile ? [0, 150] : [0, 300], isMobile ? [0, -60] : [0, -150]);
+  const y2 = useTransform(scrollY, isMobile ? [0, 150] : [0, 300], isMobile ? [0, -40] : [0, -100]);
+  const opacity = useTransform(scrollY, isMobile ? [0, 150] : [0, 300], [1, 0]);
 
   // Typewriter effect with ES6+
   useEffect(() => {

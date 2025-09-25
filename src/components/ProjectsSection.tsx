@@ -18,7 +18,7 @@ const ProjectsSection: React.FC = () => {
       description: 'Real-time chat application with AI integration using OpenAI API. Features message history, user authentication, and intelligent responses with a modern, responsive interface.',
       image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&h=400&fit=crop',
       technologies: ['React', 'Node.js', 'Socket.io', 'OpenAI API', 'MongoDB'],
-      github: 'https://github.com/yourusername/ai-chat',
+      github: 'https://github.com//ai-chat',
       live: 'https://ai-chat-demo.vercel.app',
     },
     {

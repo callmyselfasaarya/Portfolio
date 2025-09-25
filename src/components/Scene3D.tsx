@@ -90,24 +90,24 @@ const InteractiveGeometry: React.FC = () => {
 
       {/* Orbiting spheres */}
       <OrbitingSphere
-        position={[3, 0, 0]}
+        position={[0, -3, 0]}
         colors={currentColors.sphere1}
         speed={1}
+        radius={2}
+        size={0.5}
+      />
+      <OrbitingSphere
+        position={[3, 0, 0]}
+        colors={currentColors.sphere2}
+        speed={-1.5}
         radius={3}
         size={0.5}
       />
       <OrbitingSphere
-        position={[-3, 0, 0]}
-        colors={currentColors.sphere2}
-        speed={-1.2}
-        radius={3}
-        size={0.4}
-      />
-      <OrbitingSphere
         position={[0, 3, 0]}
         colors={currentColors.sphere3}
-        speed={0.8}
-        radius={3}
+        speed={1}
+        radius={2}
         size={0.6}
       />
     </group>
