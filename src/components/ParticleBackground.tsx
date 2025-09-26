@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Particle {
   x: number;
@@ -29,6 +30,7 @@ const ParticleBackground: React.FC = () => {
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
   const lastMouseMoveRef = useRef<number>(0);
+  const isMobile = useIsMobile();
 
   const createRipple = useCallback((x: number, y: number) => {
     ripplesRef.current.push({
@@ -55,7 +57,9 @@ const ParticleBackground: React.FC = () => {
 
     const createParticles = () => {
       const particles: Particle[] = [];
-      const numParticles = Math.floor((canvas.width * canvas.height) / 12000);
+      // Reduce particle count on mobile for better performance
+      const particleDensity = isMobile ? 20000 : 12000;
+      const numParticles = Math.floor((canvas.width * canvas.height) / particleDensity);
 
       for (let i = 0; i < numParticles; i++) {
         const x = Math.random() * canvas.width;
@@ -63,9 +67,9 @@ const ParticleBackground: React.FC = () => {
         particles.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 3 + 1,
+          vx: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
+          vy: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
+          size: Math.random() * (isMobile ? 2 : 3) + 1,
           opacity: Math.random() * 0.6 + 0.2,
           targetX: x,
           targetY: y,
@@ -89,8 +93,8 @@ const ParticleBackground: React.FC = () => {
         const dy = mouse.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 150 && timeSinceMouseMove < 100) {
-          // Mouse attraction
+        if (distance < 150 && timeSinceMouseMove < 100 && !isMobile) {
+          // Mouse attraction - disable on mobile for better performance
           const force = (150 - distance) / 150;
           const angle = Math.atan2(dy, dx);
           particle.vx += Math.cos(angle) * force * 0.02;
@@ -100,7 +104,7 @@ const ParticleBackground: React.FC = () => {
           particle.opacity = Math.min(0.9, particle.opacity + force * 0.1);
         } else {
           // Return to original position when mouse is away
-          const returnForce = 0.01;
+          const returnForce = isMobile ? 0.005 : 0.01;
           particle.vx += (particle.originalX - particle.x) * returnForce;
           particle.vy += (particle.originalY - particle.y) * returnForce;
           
@@ -118,9 +122,10 @@ const ParticleBackground: React.FC = () => {
         if (particle.y < -50) particle.y = canvas.height + 50;
         if (particle.y > canvas.height + 50) particle.y = -50;
 
-        // Velocity damping
-        particle.vx *= 0.98;
-        particle.vy *= 0.98;
+        // Velocity damping - more aggressive on mobile
+        const damping = isMobile ? 0.95 : 0.98;
+        particle.vx *= damping;
+        particle.vy *= damping;
       });
 
       // Update ripples
@@ -214,11 +219,13 @@ const ParticleBackground: React.FC = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
-      createRipple(e.clientX, e.clientY);
-      
-      // Create multiple ripples for more effect
-      setTimeout(() => createRipple(e.clientX + Math.random() * 40 - 20, e.clientY + Math.random() * 40 - 20), 100);
-      setTimeout(() => createRipple(e.clientX + Math.random() * 60 - 30, e.clientY + Math.random() * 60 - 30), 200);
+      if (!isMobile) {
+        createRipple(e.clientX, e.clientY);
+        
+        // Create multiple ripples for more effect - only on desktop
+        setTimeout(() => createRipple(e.clientX + Math.random() * 40 - 20, e.clientY + Math.random() * 40 - 20), 100);
+        setTimeout(() => createRipple(e.clientX + Math.random() * 60 - 30, e.clientY + Math.random() * 60 - 30), 200);
+      }
     };
 
     const handleResize = () => {

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const ContactSection: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,9 +98,11 @@ const ContactSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="flex items-center space-x-4 p-3 sm:p-4 glass rounded-lg hover:scale-105 transition-transform duration-300"
+                  className={`flex items-center space-x-4 p-3 sm:p-4 glass rounded-lg transition-transform duration-300 touch-manipulation ${
+                    isMobile ? 'hover:scale-102' : 'hover:scale-105'
+                  }`}
                 >
-                  <info.icon className="text-blue-500 flex-shrink-0" size={20} />
+                  <info.icon className="text-blue-500 flex-shrink-0" size={22} />
                   <div>
                     <p className="font-medium text-sm sm:text-base">{info.label}</p>
                     <p className="text-gray-600 text-sm sm:text-base">{info.value}</p>
@@ -182,7 +186,9 @@ const ContactSection: React.FC = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                className={`w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-4 rounded-lg transition-all duration-300 transform touch-manipulation ${
+                  isMobile ? 'hover:scale-102' : 'hover:scale-105'
+                }`}
               >
                 {isSubmitting ? (
                   <motion.div

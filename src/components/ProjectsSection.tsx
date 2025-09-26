@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ProjectsSection: React.FC = () => {
+  const isMobile = useIsMobile();
   const projects = [
     {
       title: 'Visual Portfolio Website',
@@ -62,12 +64,16 @@ const ProjectsSection: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="group glass rounded-xl overflow-hidden hover:scale-105 transition-all duration-300"
+              className={`group glass rounded-xl overflow-hidden transition-all duration-300 ${
+                isMobile ? 'hover:scale-102' : 'hover:scale-105'
+              }`}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -92,20 +98,20 @@ const ProjectsSection: React.FC = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex items-center justify-center gap-2 text-xs sm:text-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="flex items-center justify-center gap-2 text-xs sm:text-sm hover:bg-primary hover:text-primary-foreground transition-colors touch-manipulation min-h-[44px]"
                     onClick={() => window.open(project.github, '_blank')}
                   >
-                    <Github size={14} />
+                    <Github size={16} />
                     Code
                   </Button>
                   {project.live && (
                     <Button
                       variant="default"
                       size="sm"
-                      className="flex items-center justify-center gap-2 text-xs sm:text-sm"
+                      className="flex items-center justify-center gap-2 text-xs sm:text-sm touch-manipulation min-h-[44px]"
                       onClick={() => window.open(project.live, '_blank')}
                     >
-                      <ExternalLink size={14} />
+                      <ExternalLink size={16} />
                       Live Demo
                     </Button>
                   )}

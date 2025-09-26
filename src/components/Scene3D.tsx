@@ -2,12 +2,14 @@ import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
 import { Mesh, CanvasTexture } from 'three';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const InteractiveGeometry: React.FC = () => {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
 
   // Theme-based color schemes with proper tuple typing
   const colorSchemes = useMemo(() => ({
@@ -49,12 +51,16 @@ const InteractiveGeometry: React.FC = () => {
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.5;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      // Reduce animation intensity on mobile for better performance
+      const rotationSpeed = isMobile ? 0.2 : 0.5;
+      const yRotationSpeed = isMobile ? 0.15 : 0.3;
       
-      if (hovered) {
+      meshRef.current.rotation.x = state.clock.elapsedTime * rotationSpeed;
+      meshRef.current.rotation.y = state.clock.elapsedTime * yRotationSpeed;
+      
+      if (hovered && !isMobile) {
         meshRef.current.scale.setScalar(1.1);
-      } else if (clicked) {
+      } else if (clicked && !isMobile) {
         meshRef.current.scale.setScalar(0.9);
       } else {
         meshRef.current.scale.setScalar(1);
@@ -64,14 +70,22 @@ const InteractiveGeometry: React.FC = () => {
 
   const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation();
-    setHovered(true);
+    if (!isMobile) {
+      setHovered(true);
+    }
   };
 
-  const handlePointerOut = () => setHovered(false);
+  const handlePointerOut = () => {
+    if (!isMobile) {
+      setHovered(false);
+    }
+  };
 
   const handleClick = (event: ThreeEvent<MouseEvent>) => {
     event.stopPropagation();
-    setClicked(!clicked);
+    if (!isMobile) {
+      setClicked(!clicked);
+    }
   };
 
   return (
@@ -88,28 +102,32 @@ const InteractiveGeometry: React.FC = () => {
         <meshBasicMaterial {...({ map: cubeTexture } as any)} />
       </mesh>
 
-      {/* Orbiting spheres */}
-      <OrbitingSphere
-        position={[0, -3, 0]}
-        colors={currentColors.sphere1}
-        speed={1}
-        radius={2}
-        size={0.5}
-      />
-      <OrbitingSphere
-        position={[3, 0, 0]}
-        colors={currentColors.sphere2}
-        speed={-1.5}
-        radius={3}
-        size={0.5}
-      />
-      <OrbitingSphere
-        position={[0, 3, 0]}
-        colors={currentColors.sphere3}
-        speed={1}
-        radius={2}
-        size={0.6}
-      />
+      {/* Orbiting spheres - reduce complexity on mobile */}
+      {!isMobile && (
+        <>
+          <OrbitingSphere
+            position={[0, -3, 0]}
+            colors={currentColors.sphere1}
+            speed={1}
+            radius={2}
+            size={0.5}
+          />
+          <OrbitingSphere
+            position={[3, 0, 0]}
+            colors={currentColors.sphere2}
+            speed={-1.5}
+            radius={3}
+            size={0.5}
+          />
+          <OrbitingSphere
+            position={[0, 3, 0]}
+            colors={currentColors.sphere3}
+            speed={1}
+            radius={2}
+            size={0.6}
+          />
+        </>
+      )}
     </group>
   );
 };
@@ -162,12 +180,15 @@ const OrbitingSphere: React.FC<{
 
 const Scene3D: React.FC = () => {
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
 
   return (
     <div className="w-full h-full">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 75 }}
         style={{ background: 'transparent' }}
+        performance={{ min: 0.5 }} // Reduce performance requirements on mobile
+        dpr={isMobile ? 1 : 2} // Lower pixel ratio on mobile for better performance
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />

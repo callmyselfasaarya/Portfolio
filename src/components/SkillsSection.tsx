@@ -16,7 +16,7 @@ const SkillsSection: React.FC = () => {
         { name: 'JavaScript ES6+', level: 20, description: 'Modern JS features, async/await, modules, destructuring' },
         { name: 'HTML5/CSS3', level: 50, description: 'Semantic HTML, modern CSS features, flexbox, grid' },
         { name: 'Tailwind CSS', level: 50, description: 'Utility-first CSS, responsive design, custom components' },
-        { name: 'Next.js', level: 0, description: 'SSR, SSG, API routes, performance optimization' },
+        { name: 'React.js', level: 65, description: 'SSR, SSG, API routes, performance optimization' },
       ],
     },
     {
@@ -54,7 +54,9 @@ const SkillsSection: React.FC = () => {
         { name: 'SQL', level: 30, description: 'Database queries, data manipulation, relational databases' },
         { name: 'R Programming', level: 10, description: 'Statistical computing, data visualization, research' },
       ],
-    }
+    },
+    
+
   ];
 
   const containerVariants = {
@@ -119,7 +121,7 @@ const SkillsSection: React.FC = () => {
           <motion.h2 
             className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
             whileHover={{ 
-              scale: 1.05
+              scale: 1.05,
             }}
           >
             Skills & Expertise

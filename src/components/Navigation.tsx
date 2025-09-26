@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Menu, X, Target, Instagram } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,18 @@ const Navigation: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -34,14 +48,22 @@ const Navigation: React.FC = () => {
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
     if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      const element = document.querySelector(href) as HTMLElement;
+      if (element) {
+        // Add offset for mobile to account for fixed header
+        const offset = isMobile ? 80 : 0;
+        const elementPosition = element.offsetTop - offset;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 mobile-nav ${
         isScrolled 
           ? 'glass backdrop-blur-lg border-b border-white/20 dark:border-gray-800/20' 
           : 'bg-transparent'
@@ -51,7 +73,7 @@ const Navigation: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 relative">
           <motion.div
             className="text-xl sm:text-2xl font-bold gradient-text"
             whileHover={{ scale: 1.05 }}
@@ -96,24 +118,27 @@ const Navigation: React.FC = () => {
                   e.preventDefault();
                   handleNavClick(social.href);
                 } : undefined}
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors touch-manipulation"
+                aria-label={social.label}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <social.icon size={18} />
+                <social.icon size={20} />
               </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-3 md:hidden">
+          <div className="flex items-center space-x-2 md:hidden">
             <ThemeToggle />
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500/50 touch-manipulation flex-shrink-0"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -124,15 +149,15 @@ const Navigation: React.FC = () => {
 
         {/* Mobile Menu */}
         <motion.div
-          className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}
+          className={`md:hidden absolute top-full left-0 right-0 z-50 ${isMobileMenuOpen ? 'block' : 'hidden'}`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
             opacity: isMobileMenuOpen ? 1 : 0, 
             height: isMobileMenuOpen ? 'auto' : 0 
           }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-lg mt-2">
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-lg mt-2 shadow-lg border border-gray-200/20 dark:border-gray-700/20 mx-4">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
@@ -141,15 +166,17 @@ const Navigation: React.FC = () => {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors cursor-pointer"
+                className="block px-4 py-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors cursor-pointer touch-manipulation"
+                role="button"
                 whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.98 }}
               >
                 {item.name}
               </motion.a>
             ))}
             
             {/* Mobile Social Links */}
-            <div className="flex items-center justify-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-center space-x-6 pt-4 border-t border-gray-200 dark:border-gray-700">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
@@ -158,14 +185,15 @@ const Navigation: React.FC = () => {
                     e.preventDefault();
                     handleNavClick(social.href);
                   } : undefined}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                  className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors touch-manipulation p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label={social.label}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={24} />
                 </motion.a>
               ))}
             </div>
