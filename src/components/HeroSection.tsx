@@ -96,12 +96,12 @@ const HeroSection: React.FC = () => {
     <motion.section 
       id="home" 
       className={`min-h-screen flex items-center justify-center relative overflow-hidden hero-section ${
-        isMobile ? 'px-3 py-8' : 'px-4 sm:px-6 lg:px-8'
+        isMobile ? 'px-2 py-4 overflow-x-hidden max-w-full' : 'px-4 sm:px-6 lg:px-8'
       }`}
       style={{ opacity }}
     >
       {/* Enhanced animated background shapes - optimized for mobile */}
-      <motion.div className="absolute inset-0" style={{ y: y2 }}>
+      <motion.div className="absolute inset-0 max-w-full overflow-x-hidden" style={{ y: y2 }}>
         <motion.div 
           className={`absolute top-10 sm:top-20 left-4 sm:left-20 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${
             isMobile ? 'w-32 h-32 opacity-20' : 'w-48 h-48 sm:w-72 sm:h-72 opacity-30'
@@ -179,15 +179,15 @@ const HeroSection: React.FC = () => {
         ))}
       </AnimatePresence>
 
-      <div className={`max-w-7xl mx-auto grid lg:grid-cols-2 items-center z-10 w-full ${
-        isMobile ? 'gap-6 px-2' : 'gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8'
-      }`}>
+      <div className={`max-w-7xl mx-auto grid ${
+        isMobile ? 'grid-cols-1 gap-4 px-0 max-w-full' : 'lg:grid-cols-2 gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8'
+      } items-center z-10 w-full`}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className={`text-center lg:text-left order-2 lg:order-1 w-full ${
-            isMobile ? 'px-1' : ''
+            isMobile ? 'px-0 max-w-full' : ''
           }`}
           style={{ y: y1 }}
         >
@@ -207,9 +207,10 @@ const HeroSection: React.FC = () => {
 
           <motion.h1
             variants={itemVariants}
-            className={`font-bold mb-4 sm:mb-6 leading-tight break-words ${
-              isMobile ? 'text-2xl' : 'text-2xl sm:text-4xl md:text-5xl lg:text-6xl'
+            className={`font-bold mb-3 sm:mb-6 leading-tight break-words ${
+              isMobile ? 'text-2xl sm:text-3xl' : 'text-2xl sm:text-4xl md:text-5xl lg:text-6xl'
             }`}
+            style={isMobile ? { wordBreak: 'break-word' } : {}}
           >
             Hi, I'm{' '}
             <motion.span 
@@ -228,7 +229,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.8 }}
               className={`${
-                isMobile ? 'text-lg' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
+                isMobile ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
               }`}
             >
               {displayText}
@@ -241,52 +242,51 @@ const HeroSection: React.FC = () => {
               </motion.span>
             </motion.span>
           </motion.h1>
-
           <motion.p
             variants={itemVariants}
-            className={`text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0 ${
-              isMobile ? 'text-sm px-1' : 'text-base sm:text-lg lg:text-xl px-2 sm:px-0'
+            className={`text-gray-600 dark:text-gray-300 mb-5 sm:mb-8 max-w-lg mx-auto lg:mx-0 ${
+              isMobile ? 'text-sm px-0' : 'text-base sm:text-lg lg:text-xl px-2 sm:px-0'
             }`}
           >
             I create beautiful, interactive web experiences with modern technologies. 
             Passionate about clean code, user experience, and bringing ideas to life through 
             innovative JavaScript solutions.
           </motion.p>
-
           <motion.div
             variants={itemVariants}
             className={`flex flex-col sm:flex-row justify-center lg:justify-start ${
-              isMobile ? 'gap-2' : 'gap-3 sm:gap-4'
+              isMobile ? 'gap-2 w-full max-w-full' : 'gap-3 sm:gap-4'
             }`}
           >
             <motion.div
               whileHover={{ scale: isMobile ? 1.02 : 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className={isMobile ? "w-full max-w-full" : ""}
             >
               <Button
                 onClick={handleViewProjects}
-                className={`w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 
+                className={`bg-gradient-to-r from-blue-500 to-purple-600 
                           hover:from-blue-600 hover:to-purple-700 text-white 
                           font-medium transition-all duration-300 shadow-lg hover:shadow-xl
                           touch-manipulation ${
-                            isMobile ? 'px-3 py-2.5 rounded-md text-sm' : 'px-4 sm:px-6 py-3 sm:py-4 rounded-md'
+                            isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-4 sm:px-6 py-3 sm:py-4 rounded-md'
                           }`}
               >
                 <Eye className="mr-2" size={isMobile ? 16 : 18} />
                 View Projects
               </Button>
-
             </motion.div>
             <motion.div
               whileHover={{ scale: isMobile ? 1.02 : 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className={isMobile ? "w-full max-w-full" : ""}
             >
               <Button
                 variant="outline"
                 onClick={handleDownloadResume}
-                className={`w-full sm:w-auto border-2 border-gray-300 hover:border-gray-400 dark:border-gray-600 dark:hover:border-gray-500 
+                className={`border-2 border-gray-300 hover:border-gray-400 dark:border-gray-600 dark:hover:border-gray-500 
                           font-medium transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation ${
-                            isMobile ? 'px-3 py-2.5 rounded-md text-sm' : 'px-6 sm:px-8 py-4 rounded-lg'
+                            isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-6 sm:px-8 py-4 rounded-lg'
                           }`}
               >
                 <Download className="mr-2" size={isMobile ? 16 : 20} />
@@ -300,13 +300,17 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
           animate={{ opacity: 1, scale: 1, rotateY: 0 }}
           transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 100 }}
-          className={`relative order-1 lg:order-2 w-full flex justify-center ${
-            isMobile ? 'h-48' : 'h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px]'
-          }`}
+          className={`relative order-1 lg:order-2 flex justify-center items-center
+            ${isMobile
+              ? 'w-full h-48 min-h-[180px] max-h-[220px] px-2'
+              : 'w-full h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px]'
+            }`}
           variants={floatingVariants}
           style={{ y: y1 }}
         >
-          <Scene3D />
+          <div className="w-full h-full flex items-center justify-center">
+            <Scene3D width={isMobile ? 220 : 400} height={isMobile ? 180 : 400} />
+          </div>
         </motion.div>
       </div>
 

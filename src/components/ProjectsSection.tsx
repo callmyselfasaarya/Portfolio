@@ -7,38 +7,24 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const ProjectsSection: React.FC = () => {
   const isMobile = useIsMobile();
   const projects = [
+    
     {
-      title: 'Visual Portfolio Website',
-      description: 'A modern, responsive portfolio website built with React, TypeScript, and Three.js. Features interactive 3D elements, smooth animations, and a clean design showcasing my projects and skills.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-      technologies: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
-      github: 'https://github.com/callmyselfasaarya/visual-narrative-01',
-      live: 'https://yourportfolio.com',
+      title: 'Class-Connect',
+      description: 'An descriptive application which used to store the details aka information of the students of an desired institution, aiming to ease the stress of faculty and management.',
+      image: 'src/assets/ClassConnect.png',
+      technologies: ['HTML','CSS','Flask','SQLite'],
+      github: 'https://github.com/callmyselfasaarya/Class-Connect',
+      live: 'https://classconnect.pythonanywhere.com/',
     },
     {
-      title: 'AI-Powered Chat Application',
-      description: 'Real-time chat application with AI integration using OpenAI API. Features message history, user authentication, and intelligent responses with a modern, responsive interface.',
-      image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&h=400&fit=crop',
-      technologies: ['React', 'Node.js', 'Socket.io', 'OpenAI API', 'MongoDB'],
-      github: 'https://github.com//ai-chat',
-      live: 'https://ai-chat-demo.vercel.app',
-    },
-    {
-      title: 'Data Visualization Dashboard',
-      description: 'Interactive dashboard for data analysis and visualization. Built with D3.js and React, featuring real-time charts, filtering capabilities, and responsive design for various screen sizes.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      technologies: ['React', 'D3.js', 'TypeScript', 'Chart.js', 'Express.js'],
-      github: 'https://github.com/yourusername/data-dashboard',
+      title: 'Scorevant',
+      description: 'Scorevant is an Web based application for effective handling of the scores of the racket based games such as Tennis, Shuttle, Table-Tennis...',
+      image: 'src/assets/Scorevant.png',
+      technologies: ['React', 'vite', 'TypeScript', 'three.js', 'Express.js','Framer Motion','Tailwind CSS'],
+      github: 'https://github.com/callmyselfasaarya/scorevant',
       live: 'https://data-dashboard-demo.netlify.app',
     },
-    {
-      title: 'E-commerce Platform',
-      description: 'Full-stack e-commerce solution with user authentication, payment integration, and admin panel. Features product management, order tracking, and secure payment processing.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-      technologies: ['Next.js', 'Stripe', 'Prisma', 'PostgreSQL', 'NextAuth.js'],
-      github: 'https://github.com/yourusername/ecommerce',
-      live: 'https://ecommerce-demo.vercel.app',
-    },
+    
   ];
 
   return (
@@ -111,7 +97,7 @@ const ProjectsSection: React.FC = () => {
                       className="flex items-center justify-center gap-2 text-xs sm:text-sm touch-manipulation min-h-[44px]"
                       onClick={() => window.open(project.live, '_blank')}
                     >
-                      <ExternalLink size={16} />
+                      <ExternalLink size={12} />
                       Live Demo
                     </Button>
                   )}

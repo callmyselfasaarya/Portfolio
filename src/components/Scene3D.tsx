@@ -4,6 +4,11 @@ import { Mesh, CanvasTexture } from 'three';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 
+interface Scene3DProps {
+  width?: number;
+  height?: number;
+}
+
 const InteractiveGeometry: React.FC = () => {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
