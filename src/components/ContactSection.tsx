@@ -49,20 +49,20 @@ const ContactSection: React.FC = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com',
+      value: 'thisisaarya29@gmail.com',
+      href: 'mailto:thisisaarya29@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+91 9944553388',
+      href: 'tel:+919944553388',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Your City, Country',
-      href: '#',
+      value: 'Salem, India',
+      href: 'https://maps.app.goo.gl/jaRqE7puCzPB3vXb7',
     },
   ];
 
