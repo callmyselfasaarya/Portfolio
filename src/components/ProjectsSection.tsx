@@ -11,7 +11,7 @@ const ProjectsSection: React.FC = () => {
     {
       title: 'Class-Connect',
       description: 'An descriptive application which used to store the details aka information of the students of an desired institution, aiming to ease the stress of faculty and management.',
-      image: 'src/assets/ClassConnect.png',
+      image: 'public/images/ClassConnect.png',
       technologies: ['HTML','CSS','Flask','SQLite'],
       github: 'https://github.com/callmyselfasaarya/Class-Connect',
       live: 'https://classconnect.pythonanywhere.com/',
@@ -19,7 +19,7 @@ const ProjectsSection: React.FC = () => {
     {
       title: 'Scorevant',
       description: 'Scorevant is an Web based application for effective handling of the scores of the racket based games such as Tennis, Shuttle, Table-Tennis...',
-      image: 'src/assets/Scorevant.png',
+      image: 'public/images/Scorevant.png',
       technologies: ['React', 'vite', 'TypeScript', 'three.js', 'Express.js','Framer Motion','Tailwind CSS'],
       github: 'https://github.com/callmyselfasaarya/scorevant',
       live: 'https://data-dashboard-demo.netlify.app',
