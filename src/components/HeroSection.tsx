@@ -86,7 +86,7 @@ const HeroSection: React.FC = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "public/My_Resume.pdf";   // file inside public/
+    link.href = "public/Resume.pdf";   // file inside public/
     link.download = "CV.pdf"; // name of the file when downloaded
     link.click();
   };
