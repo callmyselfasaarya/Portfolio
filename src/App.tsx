@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import CaseStudy from "./pages/CaseStudy";
+import { CommandPalette } from "@/components/CommandPalette";
+import MobileNav from "@/components/MobileNav";
 
 const queryClient = new QueryClient();
 
@@ -16,8 +19,11 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <CommandPalette />
+          <MobileNav />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/project/:id" element={<CaseStudy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

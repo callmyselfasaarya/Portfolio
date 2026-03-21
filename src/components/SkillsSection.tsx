@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 const SkillsSection: React.FC = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -110,131 +110,101 @@ const SkillsSection: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8" ref={ref}>
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+    <div id="skills" className="container-standard" ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-16 sm:mb-24"
+      >
+        <motion.h2 
+          className="mb-6"
+          whileHover={{ scale: 1.02 }}
         >
-          <motion.h2 
-            className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
-            whileHover={{ 
-              scale: 1.05,
-            }}
-          >
-            Skills & Expertise
-          </motion.h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            I continuously expand my skill set to stay current with the latest technologies 
-            and best practices in modern web development, focusing on interactive experiences 
-            and cutting-edge JavaScript frameworks.
-          </p>
-        </motion.div>
+          Skills & Expertise
+        </motion.h2>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+          I continuously expand my skill set to stay current with the latest technologies 
+          and best practices in modern web development, focusing on interactive experiences 
+          and cutting-edge JavaScript frameworks.
+        </p>
+      </motion.div>
 
-        <motion.div 
-          className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              variants={categoryVariants}
-              className="glass rounded-xl p-4 sm:p-6 dark:bg-gray-800/20 dark:border-gray-700/30 hover:shadow-2xl transition-shadow duration-300"
-              whileHover={{ 
-                scale: 1.02,
-                y: -5,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
+      <motion.div 
+        className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        {skillCategories.map((category, categoryIndex) => (
+          <motion.div
+            key={category.title}
+            variants={categoryVariants}
+            className="glass-card rounded-2xl p-8"
+          >
+            <motion.h3 
+              className={`text-center bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent mb-8`}
+              whileHover={{ scale: 1.02 }}
             >
-              <motion.h3 
-                className={`text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-center bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
-                whileHover={{ scale: 1.05 }}
-              >
-                {category.title}
-              </motion.h3>
-              
-              <div className="space-y-4 sm:space-y-6">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    variants={skillVariants}
-                    className="group cursor-pointer"
-                    onMouseEnter={() => setHoveredSkill(skill.name)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                    whileHover={{ x: 5 }}
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      <motion.span 
-                        className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
-                        animate={hoveredSkill === skill.name ? {
-                          scale: [1, 1.05, 1]
-                        } : {}}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {skill.name}
-                      </motion.span>
-                      <motion.span 
-                        className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-mono"
-                        animate={hoveredSkill === skill.name ? {
-                          color: ["#6B7280", "#3B82F6", "#6B7280"]
-                        } : {}}
-                        transition={{ duration: 1, repeat: Infinity }}
-                      >
-                        {skill.level}%
-                      </motion.span>
-                    </div>
-                    
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3 mb-2 overflow-hidden">
-                      <motion.div
-                        className={`h-2 sm:h-3 rounded-full bg-gradient-to-r ${category.gradient} relative`}
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ 
-                          delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.5, 
-                          duration: 1.2,
-                          ease: 'easeOut'
-                        }}
-                        whileHover={{ 
-                          boxShadow: `0 0 20px rgba(59, 130, 246, 0.5)`,
-                          filter: "brightness(1.1)"
-                        }}
-                      >
-                        <motion.div
-                          className="absolute inset-0 bg-white/20 rounded-full"
-                          animate={hoveredSkill === skill.name ? {
-                            x: ["-100%", "100%"]
-                          } : {}}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        />
-                      </motion.div>
-                    </div>
-                    
-                    <motion.p 
-                      className="text-xs text-gray-600 dark:text-gray-400 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={hoveredSkill === skill.name ? { 
-                        height: "auto", 
-                        opacity: 1 
-                      } : { 
-                        height: 0, 
-                        opacity: 0 
-                      }}
-                      transition={{ duration: 0.3 }}
+              {category.title}
+            </motion.h3>
+            
+            <div className="space-y-8">
+              {category.skills.map((skill, skillIndex) => (
+                <motion.div
+                  key={skill.name}
+                  variants={skillVariants}
+                  className="group cursor-pointer"
+                  onMouseEnter={() => setHoveredSkill(skill.name)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                >
+                  <div className="flex justify-between items-center mb-3">
+                    <motion.span 
+                      className="text-sm font-semibold tracking-tight transition-colors"
+                      animate={hoveredSkill === skill.name ? {
+                        color: "#6366f1"
+                      } : {}}
                     >
-                      {skill.description}
-                    </motion.p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+                      {skill.name}
+                    </motion.span>
+                    <span className="text-xs font-mono opacity-60">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  
+                  <div className="w-full bg-secondary/50 rounded-full h-1.5 overflow-hidden">
+                    <motion.div
+                      className={`h-full rounded-full bg-gradient-to-r ${category.gradient}`}
+                      initial={{ width: 0 }}
+                      animate={isInView ? { width: `${skill.level}%` } : {}}
+                      transition={{ 
+                        delay: categoryIndex * 0.1 + skillIndex * 0.05 + 0.3, 
+                        duration: 1.5,
+                        ease: [0.16, 1, 0.3, 1]
+                      }}
+                    />
+                  </div>
+                  
+                  <AnimatePresence>
+                    {hoveredSkill === skill.name && (
+                      <motion.p 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="text-xs text-muted-foreground mt-3 leading-relaxed"
+                      >
+                        {skill.description}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+
   );
 };
 

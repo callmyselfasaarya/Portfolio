@@ -8,10 +8,10 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const HeroSection: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = 'Data Analyst';
+  const fullText = 'Full Stack Developer';
   const { scrollY } = useScroll();
   const isMobile = useIsMobile();
-  
+
   // Parallax transforms - optimized for mobile
   const y1 = useTransform(scrollY, isMobile ? [0, 100] : [0, 300], isMobile ? [0, -30] : [0, -150]);
   const y2 = useTransform(scrollY, isMobile ? [0, 100] : [0, 300], isMobile ? [0, -20] : [0, -100]);
@@ -44,8 +44,8 @@ const HeroSection: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: isMobile ? 30 : 50,
       scale: isMobile ? 0.9 : 0.8,
       filter: isMobile ? "blur(5px)" : "blur(10px)"
@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
 
   // Interactive button handlers with modern JS
   const handleViewProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ 
+    document.getElementById('projects')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
@@ -86,26 +86,24 @@ const HeroSection: React.FC = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "public/Resume.pdf";   // file inside public/
-    link.download = "CV.pdf"; // name of the file when downloaded
+    link.href = "/Resume.pdf";   // Vite serves public/ assets from root
+    link.download = "Aarya_Resume.pdf";
     link.click();
   };
-  
+
 
   return (
-    <motion.section 
-      id="home" 
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden hero-section ${
-        isMobile ? 'px-2 py-4 overflow-x-hidden max-w-full' : 'px-4 sm:px-6 lg:px-8'
-      }`}
+    <motion.section
+      id="home"
+      className={`min-h-screen flex items-center justify-center relative overflow-hidden hero-section ${isMobile ? 'px-2 py-4 overflow-x-hidden max-w-full' : 'px-4 sm:px-6 lg:px-8'
+        }`}
       style={{ opacity }}
     >
       {/* Enhanced animated background shapes - optimized for mobile */}
       <motion.div className="absolute inset-0 max-w-full overflow-x-hidden" style={{ y: y2 }}>
-        <motion.div 
-          className={`absolute top-10 sm:top-20 left-4 sm:left-20 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${
-            isMobile ? 'w-32 h-32 opacity-20' : 'w-48 h-48 sm:w-72 sm:h-72 opacity-30'
-          }`}
+        <motion.div
+          className={`absolute top-10 sm:top-20 left-4 sm:left-20 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${isMobile ? 'w-32 h-32 opacity-20' : 'w-48 h-48 sm:w-72 sm:h-72 opacity-30'
+            }`}
           animate={isMobile ? {} : {
             scale: [1, 1.2, 1],
             x: [0, 30, 0],
@@ -117,10 +115,9 @@ const HeroSection: React.FC = () => {
             ease: "easeInOut"
           }}
         />
-        <motion.div 
-          className={`absolute top-20 sm:top-40 right-4 sm:right-20 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${
-            isMobile ? 'w-40 h-40 opacity-20' : 'w-64 h-64 sm:w-96 sm:h-96 opacity-30'
-          }`}
+        <motion.div
+          className={`absolute top-20 sm:top-40 right-4 sm:right-20 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${isMobile ? 'w-40 h-40 opacity-20' : 'w-64 h-64 sm:w-96 sm:h-96 opacity-30'
+            }`}
           animate={isMobile ? {} : {
             scale: [1.2, 1, 1.2],
             x: [0, -40, 0],
@@ -133,10 +130,9 @@ const HeroSection: React.FC = () => {
             delay: 1
           }}
         />
-        <motion.div 
-          className={`absolute bottom-10 sm:bottom-20 left-1/2 bg-gradient-to-r from-teal-400 to-blue-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${
-            isMobile ? 'w-36 h-36 opacity-20' : 'w-56 h-56 sm:w-80 sm:h-80 opacity-30'
-          }`}
+        <motion.div
+          className={`absolute bottom-10 sm:bottom-20 left-1/2 bg-gradient-to-r from-teal-400 to-blue-600 rounded-full mix-blend-multiply filter blur-xl dark:mix-blend-screen ${isMobile ? 'w-36 h-36 opacity-20' : 'w-56 h-56 sm:w-80 sm:h-80 opacity-30'
+            }`}
           animate={isMobile ? {} : {
             scale: [1, 1.3, 1],
             x: [0, 20, 0],
@@ -179,22 +175,20 @@ const HeroSection: React.FC = () => {
         ))}
       </AnimatePresence>
 
-      <div className={`max-w-7xl mx-auto grid ${
-        isMobile ? 'grid-cols-1 gap-4 px-0 max-w-full' : 'lg:grid-cols-2 gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8'
-      } items-center z-10 w-full`}>
+      <div className={`max-w-7xl mx-auto grid ${isMobile ? 'grid-cols-1 gap-4 px-0 max-w-full' : 'lg:grid-cols-2 gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8'
+        } items-center z-10 w-full`}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className={`text-center lg:text-left order-2 lg:order-1 w-full ${
-            isMobile ? 'px-0 max-w-full' : ''
-          }`}
+          className={`text-center lg:text-left order-2 lg:order-1 w-full ${isMobile ? 'px-0 max-w-full' : ''
+            }`}
           style={{ y: y1 }}
         >
           <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
-            <motion.span 
+            <motion.span
               className="inline-block px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-blue-400/30 text-xs sm:text-sm font-medium mb-4"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(59, 130, 246, 0.5)",
                 boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)"
@@ -207,15 +201,14 @@ const HeroSection: React.FC = () => {
 
           <motion.h1
             variants={itemVariants}
-            className={`font-bold mb-3 sm:mb-6 leading-tight break-words ${
-              isMobile ? 'text-2xl sm:text-3xl' : 'text-2xl sm:text-4xl md:text-5xl lg:text-6xl'
-            }`}
+            className={`font-bold mb-3 sm:mb-6 leading-tight break-words ${isMobile ? 'text-2xl sm:text-3xl' : 'text-2xl sm:text-4xl md:text-5xl lg:text-6xl'
+              }`}
             style={isMobile ? { wordBreak: 'break-word' } : {}}
           >
             Hi, I'm{' '}
-            <motion.span 
+            <motion.span
               className="gradient-text"
-              whileHover={{ 
+              whileHover={{
                 scale: isMobile ? 1.02 : 1.05,
                 textShadow: isMobile ? "none" : "0 0 20px rgba(102, 126, 234, 0.5)"
               }}
@@ -228,9 +221,8 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.8 }}
-              className={`${
-                isMobile ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
-              }`}
+              className={`${isMobile ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
+                }`}
             >
               {displayText}
               <motion.span
@@ -244,19 +236,17 @@ const HeroSection: React.FC = () => {
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className={`text-gray-600 dark:text-gray-300 mb-5 sm:mb-8 max-w-lg mx-auto lg:mx-0 ${
-              isMobile ? 'text-sm px-0' : 'text-base sm:text-lg lg:text-xl px-2 sm:px-0'
-            }`}
+            className={`text-gray-600 dark:text-gray-300 mb-5 sm:mb-8 max-w-lg mx-auto lg:mx-0 ${isMobile ? 'text-sm px-0' : 'text-base sm:text-lg lg:text-xl px-2 sm:px-0'
+              }`}
           >
-            I create beautiful, interactive web experiences with modern technologies. 
-            Passionate about clean code, user experience, and bringing ideas to life through 
-            innovative JavaScript solutions.
+            A Computer Science undergraduate passionate about Artificial Intelligence and Machine Learning.
+            I love building smart applications, exploring data, and turning innovative ideas into
+            real-world solutions using modern technologies.
           </motion.p>
           <motion.div
             variants={itemVariants}
-            className={`flex flex-col sm:flex-row justify-center lg:justify-start ${
-              isMobile ? 'gap-2 w-full max-w-full' : 'gap-3 sm:gap-4'
-            }`}
+            className={`flex flex-col sm:flex-row justify-center lg:justify-start ${isMobile ? 'gap-2 w-full max-w-full' : 'gap-3 sm:gap-4'
+              }`}
           >
             <motion.div
               whileHover={{ scale: isMobile ? 1.02 : 1.05 }}
@@ -268,9 +258,8 @@ const HeroSection: React.FC = () => {
                 className={`bg-gradient-to-r from-blue-500 to-purple-600 
                           hover:from-blue-600 hover:to-purple-700 text-white 
                           font-medium transition-all duration-300 shadow-lg hover:shadow-xl
-                          touch-manipulation ${
-                            isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-4 sm:px-6 py-3 sm:py-4 rounded-md'
-                          }`}
+                          touch-manipulation ${isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-4 sm:px-6 py-3 sm:py-4 rounded-md'
+                  }`}
               >
                 <Eye className="mr-2" size={isMobile ? 16 : 18} />
                 View Projects
@@ -285,9 +274,8 @@ const HeroSection: React.FC = () => {
                 variant="outline"
                 onClick={handleDownloadResume}
                 className={`border-2 border-gray-300 hover:border-gray-400 dark:border-gray-600 dark:hover:border-gray-500 
-                          font-medium transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation ${
-                            isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-6 sm:px-8 py-4 rounded-lg'
-                          }`}
+                          font-medium transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation ${isMobile ? 'px-3 py-2.5 rounded-md text-sm w-full max-w-full' : 'px-6 sm:px-8 py-4 rounded-lg'
+                  }`}
               >
                 <Download className="mr-2" size={isMobile ? 16 : 20} />
                 Download Resume
@@ -315,19 +303,17 @@ const HeroSection: React.FC = () => {
       </div>
 
       <motion.div
-        className={`absolute left-1/2 transform -translate-x-1/2 ${
-          isMobile ? 'bottom-2' : 'bottom-4 sm:bottom-8'
-        }`}
+        className={`absolute left-1/2 transform -translate-x-1/2 ${isMobile ? 'bottom-2' : 'bottom-4 sm:bottom-8'
+          }`}
         animate={{ y: [0, isMobile ? 8 : 15, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         whileHover={{ scale: isMobile ? 1.1 : 1.2, color: "#667eea" }}
         style={{ opacity }}
       >
-        <ChevronDown 
-          size={isMobile ? 20 : 24} 
-          className={`text-gray-400 dark:text-gray-500 cursor-pointer ${
-            isMobile ? '' : 'sm:w-8 sm:h-8'
-          }`} 
+        <ChevronDown
+          size={isMobile ? 20 : 24}
+          className={`text-gray-400 dark:text-gray-500 cursor-pointer ${isMobile ? '' : 'sm:w-8 sm:h-8'
+            }`}
         />
       </motion.div>
     </motion.section>

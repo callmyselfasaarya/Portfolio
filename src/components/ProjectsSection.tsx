@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const ProjectsSection: React.FC = () => {
   const isMobile = useIsMobile();
   const projects = [
-    
     {
       title: 'CLASS-CONNECT',
       description: 'An descriptive application which used to store the details aka information of the students of an desired institution, aiming to ease the stress of faculty and management.',
@@ -15,6 +15,9 @@ const ProjectsSection: React.FC = () => {
       technologies: ['HTML','CSS','Flask','SQLite'],
       github: 'https://github.com/callmyselfasaarya/Class-Connect',
       live: 'https://classconnect.pythonanywhere.com/',
+      id: 'class-connect',
+      status: 'Maintained',
+      statusColor: 'bg-green-500/10 text-green-500 border-green-500/20',
     },
     {
       title: 'SCOREVANT',
@@ -23,8 +26,10 @@ const ProjectsSection: React.FC = () => {
       technologies: ['React', 'vite', 'TypeScript', 'three.js', 'Express.js','Framer Motion','Tailwind CSS'],
       github: 'https://github.com/callmyselfasaarya/scorevant',
       live: 'https://data-dashboard-demo.netlify.app',
+      id: 'scorevant',
+      status: 'Beta',
+      statusColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
     },
-    
   ];
 
   return (
@@ -36,10 +41,9 @@ const ProjectsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Projects</h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore my machine learning and AI projects showcasing deep learning, computer vision, 
-            natural language processing, and predictive analytics implementations.
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Featured Work</h2>
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Deep dives into architectural decisions, technical challenges, and real-world results.
           </p>
         </motion.div>
 
@@ -66,41 +70,44 @@ const ProjectsSection: React.FC = () => {
               </div>
               
               <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">{project.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-3">{project.description}</p>
+                <div className="flex justify-between items-start mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold">{project.title}</h3>
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${project.statusColor}`}>
+                    {project.status}
+                  </span>
+                </div>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 line-clamp-3 font-light">
+                  {project.description}
+                </p>
                 
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full"
+                      className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-blue-500/5 text-blue-500/80 border border-blue-500/10 rounded-full"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
                 
-                <div className="flex gap-2 justify-center">
+                <div className="grid grid-cols-2 gap-3">
                   <Button
                     variant="outline"
-                    size="sm"
-                    className="flex items-center justify-center gap-2 text-xs sm:text-sm hover:bg-primary hover:text-primary-foreground transition-colors touch-manipulation min-h-[44px]"
+                    className="w-full glass-card hover:bg-primary/5 border-primary/20"
                     onClick={() => window.open(project.github, '_blank')}
                   >
-                    <Github size={16} />
+                    <Github size={14} className="mr-2" />
                     Code
                   </Button>
-                  {project.live && (
+                  <Link to={`/project/${project.id}`} className="w-full">
                     <Button
                       variant="default"
-                      size="sm"
-                      className="flex items-center justify-center gap-2 text-xs sm:text-sm touch-manipulation min-h-[44px]"
-                      onClick={() => window.open(project.live, '_blank')}
+                      className="w-full bg-primary hover:opacity-90"
                     >
-                      <ExternalLink size={12} />
-                      Live Demo
+                      Case Study
                     </Button>
-                  )}
+                  </Link>
                 </div>
               </div>
             </motion.div>

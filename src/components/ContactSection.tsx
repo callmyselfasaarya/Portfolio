@@ -206,6 +206,17 @@ const ContactSection: React.FC = () => {
             </form>
           </motion.div>
         </div>
+
+        {/* Footer info */}
+        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <p>© 2024 Aarya Lekshmanan. Built for performance.</p>
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              Last updated: 2 hours ago
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

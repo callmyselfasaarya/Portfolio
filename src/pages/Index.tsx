@@ -4,10 +4,14 @@ import React from 'react';
 import ParticleBackground from '@/components/ParticleBackground';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import DashboardStats from '@/components/DashboardStats';
+import JourneyTimeline from '@/components/JourneyTimeline';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
-import EventSection from '@/components/EventSection';
+import SocialProofSection from '@/components/SocialProofSection';
+import BlogSection from '@/components/BlogSection';
 import SkillsSection from '@/components/SkillsSection';
+import HireMeCTA from '@/components/HireMeCTA';
 import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
@@ -16,10 +20,14 @@ const Index = () => {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
+      <DashboardStats />
+      <JourneyTimeline />
       <AboutSection />
       <ProjectsSection />
-      <EventSection />
+      <SocialProofSection />
+      <BlogSection />
       <SkillsSection />
+      <HireMeCTA />
       <ContactSection />
     </div>
   );

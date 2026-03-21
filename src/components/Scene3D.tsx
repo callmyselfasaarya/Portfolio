@@ -183,7 +183,12 @@ const OrbitingSphere: React.FC<{
   );
 };
 
-const Scene3D: React.FC = () => {
+interface Scene3DProps {
+  width?: number;
+  height?: number;
+}
+
+const Scene3D: React.FC<Scene3DProps> = () => {
   const { theme } = useTheme();
   const isMobile = useIsMobile();
 

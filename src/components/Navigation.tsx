@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, Menu, X, Target, Instagram } from 'lucide-react';
+import { Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -18,18 +17,6 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
-
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -39,18 +26,16 @@ const Navigation: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/callmyselfasaarya', label: 'GitHub'},
-    { icon: Instagram, href: 'https://www.instagram.com/aaryuah', label: 'Instagram' },    { icon: Linkedin, href: 'https://www.linkedin.com/in/aarya-lekshmanan/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3Bd4igoC%2B5TfSU5j4ZpUQduQ%3D%3D', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/callmyselfasaarya', label: 'GitHub' },
+    { icon: Instagram, href: 'https://www.instagram.com/aaryuah', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/aarya-lekshmanan/', label: 'LinkedIn' },
     { icon: Mail, href: '#contact', label: 'Email' },
-    
   ];
   
   const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
     if (href.startsWith('#')) {
       const element = document.querySelector(href) as HTMLElement;
       if (element) {
-        // Add offset for mobile to account for fixed header
         const offset = isMobile ? 80 : 0;
         const elementPosition = element.offsetTop - offset;
         window.scrollTo({
@@ -63,27 +48,26 @@ const Navigation: React.FC = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 mobile-nav ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass backdrop-blur-lg border-b border-white/20 dark:border-gray-800/20' 
-          : 'bg-transparent'
+          ? 'glass backdrop-blur-lg border-b border-white/20 dark:border-gray-800/20 py-3' 
+          : 'bg-transparent py-5'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 relative">
+      <div className="container-standard">
+        <div className="flex justify-between items-center relative">
           <motion.div
-            className="text-xl sm:text-2xl font-bold gradient-text"
-            whileHover={{ scale: 1.05 }}
+            className="text-xl sm:text-2xl font-bold gradient-text tracking-tighter shrink-0"
+            whileHover={{ scale: 1.02 }}
           >
-          Aarya Lekshmanan
-            
+            Aarya Lekshmanan
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
@@ -92,23 +76,18 @@ const Navigation: React.FC = () => {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors relative cursor-pointer"
-                whileHover={{ scale: 1.05 }}
+                className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors relative cursor-pointer text-sm font-medium uppercase tracking-widest"
+                whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item.name}
-                <motion.div
-                  className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.2 }}
-                />
               </motion.a>
             ))}
           </div>
 
           {/* Desktop Social Links & Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
+          <div className="hidden lg:flex items-center space-x-3 lg:space-x-4">
+            <div className="h-4 w-px bg-gray-200 dark:bg-gray-800 mx-2" />
             <ThemeToggle />
             {socialLinks.map((social, index) => (
               <motion.a
@@ -118,87 +97,24 @@ const Navigation: React.FC = () => {
                   e.preventDefault();
                   handleNavClick(social.href);
                 } : undefined}
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors touch-manipulation"
+                className="text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-2"
                 aria-label={social.label}
-                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <social.icon size={20} />
+                <social.icon size={18} />
               </motion.a>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-2 md:hidden">
+          {/* Mobile Actions */}
+          <div className="flex items-center md:hidden">
             <ThemeToggle />
-            <motion.button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500/50 touch-manipulation flex-shrink-0"
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <motion.div
-          className={`md:hidden absolute top-full left-0 right-0 z-50 ${isMobileMenuOpen ? 'block' : 'hidden'}`}
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: isMobileMenuOpen ? 1 : 0, 
-            height: isMobileMenuOpen ? 'auto' : 0 
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-lg mt-2 shadow-lg border border-gray-200/20 dark:border-gray-700/20 mx-4">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className="block px-4 py-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors cursor-pointer touch-manipulation"
-                role="button"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {item.name}
-              </motion.a>
-            ))}
-            
-            {/* Mobile Social Links */}
-            <div className="flex items-center justify-center space-x-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  onClick={social.href.startsWith('#') ? (e) => {
-                    e.preventDefault();
-                    handleNavClick(social.href);
-                  } : undefined}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors touch-manipulation p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <social.icon size={24} />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.nav>
   );
