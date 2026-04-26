@@ -34,21 +34,23 @@ const BlogSection: React.FC = () => {
   return (
     <section id="blog" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div className="text-center mb-16">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="flex-grow"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Thought Leadership</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl text-lg">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Thought Leadership</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
               Writing about system design, scaling engineering teams, and modern web architectures.
             </p>
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-8"
           >
              <Button variant="outline" className="rounded-xl h-12 px-6">
                 View All Posts

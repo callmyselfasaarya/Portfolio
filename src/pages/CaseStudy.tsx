@@ -30,6 +30,19 @@ const projectsData: Record<string, any> = {
       tech: ['Python', 'Flask', 'SQLite', 'Bootstrap'],
       github: 'https://github.com/callmyselfasaarya/Class-Connect',
       demo: 'https://classconnect.pythonanywhere.com/'
+  },
+  'capsync': {
+    title: 'CAPSYNC',
+    subtitle: 'AI-Powered Social Media Caption Synchronization',
+    image: '/images/CapSync.png',
+    problem: 'Creators often struggle to keep up with the demands of multiple platforms, leading to inconsistent branding and high manual effort in generating platform-appropriate captions.',
+    approach: 'Developed a unified dashboard that leverages LLMs for intelligent caption generation, multimodal image analysis for context, and a robust scheduling engine for cross-platform synchronization.',
+    architecture: 'Next.js 14 App Router, OpenAI & Gemini via AI SDK, PostgreSQL with Prisma, and Clerk for authentication.',
+    challenges: 'Ensuring consistent tone of voice across generated captions and managing varying rate limits from social media APIs.',
+    results: 'Enabled creators to spend 70% less time on captioning while increasing post engagement by 25% through optimized hashtags and hooks.',
+    tech: ['Next.js', 'AI SDK', 'Postgres', 'Tailwind'],
+    github: 'https://github.com/callmyselfasaarya/capsync',
+    demo: 'https://capsync-demo.netlify.app'
   }
 };
 

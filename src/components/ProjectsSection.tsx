@@ -27,8 +27,19 @@ const ProjectsSection: React.FC = () => {
       github: 'https://github.com/callmyselfasaarya/scorevant',
       live: 'https://data-dashboard-demo.netlify.app',
       id: 'scorevant',
-      status: 'Beta',
+      status: 'In Development',
       statusColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+    },
+    {
+      title: 'CAPSYNC',
+      description: 'An AI-powered social media companion that generates platform-optimized captions, manages interaction schedules, and synchronizes content across multiple social platforms.',
+      image: 'public/images/Capsync.png',
+      technologies: ['Next.js', 'AI SDK', 'PostgreSQL', 'Tailwind', 'Clerk Auth'],
+      github: 'https://github.com/callmyselfasaarya/capsync',
+      live: 'https://capsync-demo.netlify.app',
+      id: 'capsync',
+      status: 'In Development',
+      statusColor: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
     },
   ];
 
@@ -39,10 +50,10 @@ const ProjectsSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Featured Work</h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Deep dives into architectural decisions, technical challenges, and real-world results.
           </p>
         </motion.div>

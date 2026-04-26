@@ -47,23 +47,23 @@ export const features = [
 
 export const timelineData = [
   {
-    year: '2021',
-    title: 'Started Computer Science',
-    description: 'Began my CS journey higher secondary education, discovering basic programming fundamentals and algorithmic thinking'
+    year: '2023',
+    title: 'Started Computer Science (AI & ML)',
+    description: 'Began my CS journey Undergraduate, discovering basic programming fundamentals and algorithmic thinking'
   },
   {
-    year: '2023',
-    title: 'Discovered AI & ML',
-    description: 'Fell in love with machine learning concepts, neural networks, and data science'
+    year: '2024',
+    title: 'Participation in Events and Hackathons',
+    description: 'Participated in various events and hackathons, enhancing my technical skills and teamwork'
   },
   {
     year: '2025',
-    title: 'Built First Projects',
+    title: 'Started building Projects',
     description: 'Created machine learning models and web applications using modern frameworks'
   },
   {
     year: '2027',
     title: 'Ready for Industry',
-    description: 'Seeking opportunities to apply AI/ML skills in real-world projects and contribute to innovation'
+    description: 'Will be ready for the industry and seeking opportunities to apply AI/ML skills in real-world projects and contribute to innovation'
   }
 ];

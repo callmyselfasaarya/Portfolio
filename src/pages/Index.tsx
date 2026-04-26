@@ -11,7 +11,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SocialProofSection from '@/components/SocialProofSection';
 import BlogSection from '@/components/BlogSection';
 import SkillsSection from '@/components/SkillsSection';
-import HireMeCTA from '@/components/HireMeCTA';
 import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
@@ -27,7 +26,6 @@ const Index = () => {
       <SocialProofSection />
       <BlogSection />
       <SkillsSection />
-      <HireMeCTA />
       <ContactSection />
     </div>
   );

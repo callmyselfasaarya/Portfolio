@@ -13,18 +13,18 @@ import {
 import { Code2, GitCommit, Layout, Zap } from 'lucide-react';
 
 const data = [
-  { name: 'React', value: 95, color: '#61DAFB' },
-  { name: 'Node.js', value: 85, color: '#339933' },
-  { name: 'TypeScript', value: 90, color: '#3178C6' },
-  { name: 'Python', value: 80, color: '#3776AB' },
-  { name: 'AWS', value: 75, color: '#FF9900' },
+  { name: 'Python', value: 95, color: '#3776AB' },
+  { name: 'Excel / Google Sheets', value: 86, color: '#ffbb00ff' },
+  { name: 'React', value: 65, color: '#61DAFB' },
+  { name: 'Node.js', value: 70, color: '#339933' },
+  { name: 'Figma', value: 35, color: '#FF9900' },
 ];
 
 const stats = [
-  { label: 'Projects Completed', value: '24+', icon: Layout, color: 'text-blue-500' },
-  { label: 'GitHub Commits', value: '1.2k+', icon: GitCommit, color: 'text-purple-500' },
-  { label: 'System Uptime', value: '99.9%', icon: Zap, color: 'text-yellow-500' },
-  { label: 'Tech Stack', value: '12+', icon: Code2, color: 'text-green-500' },
+  { label: 'Projects Completed', value: '5+', icon: Layout, color: 'text-blue-500' },
+  { label: 'GitHub Commits', value: '50+', icon: GitCommit, color: 'text-purple-500' },
+  { label: 'System Uptime', value: '64%', icon: Zap, color: 'text-yellow-500' },
+  { label: 'Tech Stack', value: '8+', icon: Code2, color: 'text-green-500' },
 ];
 
 const DashboardStats: React.FC = () => {
@@ -110,7 +110,7 @@ const DashboardStats: React.FC = () => {
                 <div className="h-2 w-2 rounded-full bg-blue-500 mt-2 animate-pulse" />
                 <div>
                   <h4 className="font-medium text-blue-400 text-sm mb-1">Now Building</h4>
-                  <p className="text-sm">Scalable Microservices with Go and Kubernetes</p>
+                  <p className="text-sm">Scorevant, an application for sports based events and tournaments</p>
                 </div>
               </div>
               
