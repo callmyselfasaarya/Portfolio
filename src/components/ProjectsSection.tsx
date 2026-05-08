@@ -25,7 +25,7 @@ const ProjectsSection: React.FC = () => {
       image: '/images/Scorevant.png',
       technologies: ['React', 'vite', 'TypeScript', 'three.js', 'Express.js','Framer Motion','Tailwind CSS'],
       github: 'https://github.com/callmyselfasaarya/scorevant',
-      live: 'https://data-dashboard-demo.netlify.app',
+      live: 'https://scorevant.netlify.app',
       id: 'scorevant',
       status: 'In Development',
       statusColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
@@ -36,7 +36,7 @@ const ProjectsSection: React.FC = () => {
       image: 'public/images/Capsync.png',
       technologies: ['Next.js', 'AI SDK', 'PostgreSQL', 'Tailwind', 'Clerk Auth'],
       github: 'https://github.com/callmyselfasaarya/capsync',
-      live: 'https://capsync-demo.netlify.app',
+      live: 'https://capsync-lemon.vercel.app/',
       id: 'capsync',
       status: 'In Development',
       statusColor: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
@@ -69,7 +69,7 @@ const ProjectsSection: React.FC = () => {
                 isMobile ? 'hover:scale-102' : 'hover:scale-105'
               }`}
             >
-              <div className="relative overflow-hidden">
+              <Link to={`/project/${project.id}`} className="relative overflow-hidden block">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -78,11 +78,13 @@ const ProjectsSection: React.FC = () => {
                   className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+              </Link>
               
               <div className="p-4 sm:p-6">
                 <div className="flex justify-between items-start mb-2 sm:mb-3">
-                  <h3 className="text-lg sm:text-xl font-bold">{project.title}</h3>
+                  <Link to={`/project/${project.id}`}>
+                    <h3 className="text-lg sm:text-xl font-bold hover:text-primary transition-colors cursor-pointer">{project.title}</h3>
+                  </Link>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${project.statusColor}`}>
                     {project.status}
                   </span>
@@ -111,14 +113,14 @@ const ProjectsSection: React.FC = () => {
                     <Github size={14} className="mr-2" />
                     Code
                   </Button>
-                  <Link to={`/project/${project.id}`} className="w-full">
-                    <Button
-                      variant="default"
-                      className="w-full bg-primary hover:opacity-90"
-                    >
-                      Case Study
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="default"
+                    className="w-full bg-primary hover:opacity-90"
+                    onClick={() => window.open(project.live, '_blank')}
+                  >
+                    <ExternalLink size={14} className="mr-2" />
+                    Live Demo
+                  </Button>
                 </div>
               </div>
             </motion.div>

@@ -18,7 +18,7 @@ const posts = [
     date: 'February 28, 2024',
     readTime: '12 min read',
     tags: ['Edge Computing', 'Caching'],
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800',
+    image: 'https://info.teledynamics.com/hubfs/blog-images/Edge%20computing%20-%20TeleDynamics%20Blog.jpg',
   },
   {
     title: 'Clean Architecture in Modern Frontend Frameworks',
