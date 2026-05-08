@@ -33,7 +33,7 @@ const ProjectsSection: React.FC = () => {
     {
       title: 'CAPSYNC',
       description: 'An AI-powered social media companion that generates platform-optimized captions, manages interaction schedules, and synchronizes content across multiple social platforms.',
-      image: 'public/images/Capsync.png',
+      image: '/images/Capsync.png',
       technologies: ['Next.js', 'AI SDK', 'PostgreSQL', 'Tailwind', 'Clerk Auth'],
       github: 'https://github.com/callmyselfasaarya/capsync',
       live: 'https://capsync-lemon.vercel.app/',
