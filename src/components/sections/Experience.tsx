@@ -2,19 +2,19 @@ import { FadeIn } from '../ui/FadeIn';
 
 const EXPERIENCE = [
   {
-    title: 'Senior Frontend Engineer',
-    company: 'TechFlow Inc. (2023 - Present)',
-    description: 'Led the migration of a legacy dashboard to React 18, improving render performance by 40%. Implemented a custom design system using Tailwind and Radix UI.',
+    title: 'Junior Frontend Engineer - Intern',
+    company: 'Nutz Technovations (2023 - Present)',
+    description: 'Developed some of the designs for the company on alias of the personal growth of the ui/ux skills.',
   },
   {
-    title: 'Full Stack Developer',
-    company: 'Innovate Studio (2020 - 2023)',
-    description: 'Developed and maintained scalable microservices using Node.js and PostgreSQL. Built interactive data visualization tools using D3.js and Vue.',
+    title: 'Founder and President',
+    company: 'Innoverse Club (2024 - 2025)',
+    description: 'Organized workshops and Events, fostering a culture of innovation and technical excellence within the college community.',
   },
   {
-    title: 'B.S. Computer Science',
-    company: 'University of Technology (2016 - 2020)',
-    description: 'Specialized in Human-Computer Interaction and Distributed Systems. Graduated with honors.',
+    title: 'B.E - cse (AI & ml)',
+    company: 'Mahendra Institute of Technology (2023 - 2027)',
+    description: 'Currently pursuing a Bachelor of Engineering in Computer Science with a specialization in Artificial Intelligence and Machine Learning.',
   }
 ];
 

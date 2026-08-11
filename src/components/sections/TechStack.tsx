@@ -1,93 +1,115 @@
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FadeIn } from '../ui/FadeIn';
+import SpecularButton from '../ui/SpecularButton';
+import { TechIcon } from '../ui/TechIcon';
 
-const GIF_URLS = [
-  "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
-  "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
-  "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
-  "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
-  "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
-  "https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
-  "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
-  "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
-  "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-  "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
-  "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
-  "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
-  "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-  "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
-  "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
-  "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
-  "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
-  "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-  "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif"
+interface SkillCategory {
+  label: string;
+  skills: { name: string; icon: string }[];
+}
+
+const defaultCategories: SkillCategory[] = [
+  {
+    label: "Frontend",
+    skills: [
+      { name:"React.js",icon:"react"},
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "Framer Motion", icon: "framer" },
+      { name: "Three.js", icon: "threedotjs" }
+    ]
+  },
+  {
+    label: "Backend",
+    skills: [
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "Express", icon: "express" },
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "GraphQL", icon: "graphql" }
+    ]
+  },
+  {
+    label: "Databases",
+    skills: [
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "Redis", icon: "redis" },
+      { name: "Prisma", icon: "prisma" }
+    ]
+  },
+  {
+    label: "DevOps & Deploy",
+    skills: [
+      { name: "Docker", icon: "docker" },
+      { name: "AWS", icon: "amazonaws" },
+      { name: "Vercel", icon: "vercel" },
+      { name: "Git", icon: "git" }
+    ]
+  }
 ];
 
-const row1Images = GIF_URLS.slice(0, 11);
-const row2Images = GIF_URLS.slice(11);
-
-// Tripled to allow seamless scrolling across a wide range
-const row1Tripled = [...row1Images, ...row1Images, ...row1Images];
-const row2Tripled = [...row2Images, ...row2Images, ...row2Images];
-
-export const TechStack = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current || !row1Ref.current || !row2Ref.current) return;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      // We check if the section is somewhat in view
-      if (rect.top > window.innerHeight || rect.bottom < 0) return;
-
-      const sectionTop = sectionRef.current.offsetTop;
-      const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
-      
-      // Row 1 moves right
-      row1Ref.current.style.transform = `translate3d(${offset - 200}px, 0, 0)`;
-      // Row 2 moves left
-      row2Ref.current.style.transform = `translate3d(${-(offset - 200)}px, 0, 0)`;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial call
-    handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+export const TechStack = ({ 
+  categories = defaultCategories
+}: { 
+  categories?: SkillCategory[]
+}) => {
   return (
-    <section 
-      id="tech" 
-      ref={sectionRef}
-      className="w-full bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden flex flex-col gap-3 relative z-10"
-    >
-      <div 
-        ref={row1Ref}
-        className="flex gap-3 w-max"
-        style={{ willChange: 'transform' }}
-      >
-        {row1Tripled.map((url, idx) => (
-          <div key={`row1-${idx}`} className="w-[280px] h-[180px] sm:w-[350px] sm:h-[225px] md:w-[420px] md:h-[270px] flex-shrink-0 rounded-2xl overflow-hidden bg-white/5">
-            <img src={url} alt="Showcase" loading="lazy" className="w-full h-full object-cover" />
-          </div>
-        ))}
-      </div>
+    <section id="tech stack" className="w-full bg-[#0C0C0C] relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
+      <FadeIn delay={0} y={40} className="w-full flex flex-col justify-center items-center gap-4 mb-16 sm:mb-20 md:mb-28">
+        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(3rem,8vw,120px)] text-center">
+          Tech Stack
+        </h2>
+        <p className="text-[#D7E2EA]/60 text-lg md:text-xl font-light tracking-wide uppercase">
+          Tools I've shipped production work with
+        </p>
+      </FadeIn>
 
-      <div 
-        ref={row2Ref}
-        className="flex gap-3 w-max"
-        style={{ willChange: 'transform' }}
-      >
-        {row2Tripled.map((url, idx) => (
-          <div key={`row2-${idx}`} className="w-[280px] h-[180px] sm:w-[350px] sm:h-[225px] md:w-[420px] md:h-[270px] flex-shrink-0 rounded-2xl overflow-hidden bg-white/5">
-            <img src={url} alt="Showcase" loading="lazy" className="w-full h-full object-cover" />
-          </div>
-        ))}
+      <div className="max-w-6xl mx-auto flex flex-col gap-12 items-center">
+        {/* Skill Grid */}
+        <div className="w-full flex flex-col gap-10">
+          {categories.map((category, catIndex) => (
+            <FadeIn key={category.label} delay={0.3 + (catIndex * 0.1)} className="w-full">
+              <h3 className="text-xl font-medium text-[#D7E2EA] mb-6 tracking-wide border-b border-[#D7E2EA]/10 pb-4">
+                {category.label}
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 + (skillIndex * 0.05), duration: 0.5 }}
+                  >
+                    <SpecularButton
+                      size="md"
+                      radius={24}
+                      tint="#ffffff"
+                      tintOpacity={0.06}
+                      blur={10}
+                      textColor="#D7E2EA"
+                      lineColor="#ffffff"
+                      baseColor="#525252"
+                      intensity={1.2}
+                      shineSize={12}
+                      shineFade={35}
+                      thickness={1.2}
+                      speed={0.35}
+                      followMouse
+                      proximity={200}
+                      autoAnimate={false}
+                    >
+                      <TechIcon name={skill.icon} className="w-5 h-5 opacity-90 transition-opacity group-hover:opacity-100" />
+                      <span className="text-[#D7E2EA] font-light text-sm md:text-base">
+                        {skill.name}
+                      </span>
+                    </SpecularButton>
+                  </motion.div>
+                ))}
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );

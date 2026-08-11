@@ -49,7 +49,7 @@ export const About = () => {
           </h2>
         </FadeIn>
         
-        <div className="mt-10 sm:mt-14 md:mt-16 text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)]">
+        <div className="mt-10 sm:mt-14 md:mt-16 text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[720px] text-[clamp(1rem,2vw,1.35rem)]">
           <AnimatedText text={aboutText} />
         </div>
 

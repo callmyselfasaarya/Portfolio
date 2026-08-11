@@ -36,14 +36,14 @@ export const Contact = () => {
           <FadeIn delay={0.3} y={30} className="space-y-6">
             <div className="flex flex-col">
               <span className="text-[#D7E2EA] font-medium uppercase tracking-widest text-sm opacity-50 mb-1">Email</span>
-              <a href="mailto:hello@johndoe.dev" className="text-xl md:text-2xl text-[#D7E2EA] font-medium hover:opacity-70 transition-opacity">
-                hello@johndoe.dev
+              <a href="mailto:thisisaarya29@gmail.com" className="text-xl md:text-2xl text-[#D7E2EA] font-medium hover:opacity-70 transition-opacity">
+                thisisaarya29@gmail.com
               </a>
             </div>
             <div className="flex flex-col">
               <span className="text-[#D7E2EA] font-medium uppercase tracking-widest text-sm opacity-50 mb-1">Location</span>
               <span className="text-xl md:text-2xl text-[#D7E2EA] font-medium">
-                San Francisco, CA
+                Salem, Tamil Nadu, India
               </span>
             </div>
           </FadeIn>
@@ -60,7 +60,7 @@ export const Contact = () => {
                 onChange={e => setFormState({...formState, name: e.target.value})}
                 required
                 className="w-full bg-transparent border-b-2 border-[#D7E2EA]/30 py-4 text-[#D7E2EA] focus:outline-none focus:border-[#D7E2EA] transition-colors font-light text-lg"
-                placeholder="John Doe"
+                placeholder="Peter Parker"
               />
             </div>
 
@@ -73,7 +73,7 @@ export const Contact = () => {
                 onChange={e => setFormState({...formState, email: e.target.value})}
                 required
                 className="w-full bg-transparent border-b-2 border-[#D7E2EA]/30 py-4 text-[#D7E2EA] focus:outline-none focus:border-[#D7E2EA] transition-colors font-light text-lg"
-                placeholder="john@example.com"
+                placeholder="peterbparker@example.com"
               />
             </div>
 

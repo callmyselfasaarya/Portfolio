@@ -1,6 +1,7 @@
 import { FadeIn } from '../ui/FadeIn';
 import { Magnet } from '../ui/Magnet';
 import { ContactButton } from '../ui/ContactButton';
+import BlurText from '../ui/BlurText';
 
 export const Hero = () => {
   return (
@@ -10,11 +11,13 @@ export const Hero = () => {
       {/* Hero Heading */}
       <div className="flex-1 flex flex-col items-center justify-start mt-6 sm:mt-4 md:-mt-5 px-4 w-full z-20 pointer-events-none">
         <div className="overflow-hidden w-full flex justify-center">
-          <FadeIn delay={0.15} y={40} className="w-full text-center">
-            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[10vw] sm:text-[9vw] md:text-[11vw] lg:text-[13vw]">
-              Hi, i&apos;m aarya
-            </h1>
-          </FadeIn>
+          <BlurText 
+            text="HI, I'M AARYA" 
+            delay={150} 
+            animateBy="words" 
+            direction="top" 
+            className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[10vw] sm:text-[9vw] md:text-[11vw] lg:text-[13vw]"
+          />
         </div>
       </div>
 

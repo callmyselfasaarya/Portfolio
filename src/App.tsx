@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect} from 'react';
 import Lenis from '@studio-freight/lenis';
 import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
@@ -10,11 +10,9 @@ import { Contact } from './components/sections/Contact';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { CustomCursor } from './components/layout/CustomCursor';
-import { LoadingScreen } from './components/layout/LoadingScreen';
-import { AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = false;  
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -42,10 +40,6 @@ function App() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} key="loader" />}
-      </AnimatePresence>
-      
       {!isLoading && (
         <div className="relative w-full h-full min-h-screen">
           <CustomCursor />
@@ -54,8 +48,8 @@ function App() {
           <main>
             <Hero />
             <About />
-            <TechStack />
             <Experience />
+            <TechStack />
             <Projects />
             <GithubSection />
             <Contact />
