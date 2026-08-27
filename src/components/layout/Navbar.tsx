@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { FadeIn } from '../ui/FadeIn';
+import { useLenis } from '../../context/LenisContext';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const { scrollTo } = useLenis();
 
   const navLinks = [
     { name: 'About', href: 'about' },
@@ -40,9 +42,12 @@ export const Navbar = () => {
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId.toLowerCase());
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const cleanId = targetId.toLowerCase().replace(/\s+/g, '-');
+    const targetElement = document.getElementById(cleanId) || document.getElementById(targetId.toLowerCase());
+    if (targetElement) {
+      scrollTo(targetElement);
+    } else {
+      scrollTo(`#${cleanId}`);
     }
     setMobileMenuOpen(false);
   };
@@ -64,7 +69,7 @@ export const Navbar = () => {
               href="#" 
               onClick={(e) => {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                scrollTo(0);
               }}
               className="flex items-center gap-2 font-sans font-black tracking-wider text-xs lg:text-sm text-[#D7E2EA] hover:text-white px-3 py-2 rounded-xl hover:bg-white/5 transition-all"
             >

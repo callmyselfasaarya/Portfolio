@@ -54,7 +54,7 @@ export const TechStack = ({
   categories?: SkillCategory[]
 }) => {
   return (
-    <section id="tech stack" className="w-full bg-[#0C0C0C] relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
+    <section id="tech-stack" className="w-full bg-[#0C0C0C] relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
       <FadeIn delay={0} y={40} className="w-full flex flex-col justify-center items-center gap-4 mb-16 sm:mb-20 md:mb-28">
         <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(3rem,8vw,120px)] text-center">
           Tech Stack
