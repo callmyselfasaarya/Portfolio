@@ -55,7 +55,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Desktop & Mobile Floating Pill Navbar Container */}
-      <div className="fixed top-5 left-0 right-0 z-50 flex justify-center px-5 sm:px-8 md:px-10 pointer-events-none">
+      <div className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-8 md:px-10 pointer-events-none">
         <FadeIn 
           as={motion.nav}
           delay={0}
@@ -109,13 +109,13 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Compact Floating Pill */}
-          <div className="md:hidden flex items-center justify-between gap-4 bg-[#161C22]/95 backdrop-blur-xl px-4 py-2 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] border border-white/15 w-full mx-auto">
-            <span className="font-sans font-black tracking-wider text-xs text-[#D7E2EA] uppercase pl-2">
+          <div className="md:hidden flex items-center justify-between gap-3 bg-[#161C22]/95 backdrop-blur-xl px-3.5 py-2 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] border border-white/15 w-full mx-auto">
+            <span className="font-sans font-black tracking-wider text-xs text-[#D7E2EA] uppercase pl-1">
               PORTFOLIO
             </span>
 
             <button 
-              className="bg-[#D7E2EA] text-[#0C0C0C] p-2 rounded-lg hover:bg-white transition-colors"
+              className="bg-[#D7E2EA] text-[#0C0C0C] p-1.5 rounded-lg hover:bg-white transition-colors"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Menu"
             >
@@ -133,7 +133,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] bg-[#0C0C0C]/95 backdrop-blur-2xl flex flex-col p-6 sm:p-10"
+            className="fixed inset-0 z-[100] bg-[#0C0C0C]/95 backdrop-blur-2xl flex flex-col p-5 sm:p-10 max-h-[100dvh] overflow-y-auto"
           >
             <div className="flex justify-between items-center pt-2 pb-6 border-b border-white/10">
               <span className="font-sans text-xs tracking-wider text-[#D7E2EA] uppercase font-black">
@@ -144,11 +144,11 @@ export const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close Menu"
               >
-                <X size={22} />
+                <X size={20} />
               </button>
             </div>
             
-            <div className="flex flex-col items-center justify-center flex-1 gap-6">
+            <div className="flex flex-col items-center justify-center flex-1 gap-5 py-8">
               {navLinks.map((link, i) => (
                 <motion.a 
                   key={link.name} 
@@ -157,7 +157,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="text-2xl sm:text-3xl font-sans font-black text-[#D7E2EA] uppercase tracking-wider hover:text-white transition-colors"
+                  className="text-xl sm:text-3xl font-sans font-black text-[#D7E2EA] uppercase tracking-wider hover:text-white transition-colors py-1"
                 >
                   {link.name}
                 </motion.a>
@@ -169,7 +169,7 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.05 }}
-                className="mt-4 bg-[#D7E2EA] text-[#0C0C0C] font-sans font-black text-base uppercase tracking-wider px-8 py-3.5 rounded-xl shadow-lg hover:bg-white transition-all"
+                className="mt-4 bg-[#D7E2EA] text-[#0C0C0C] font-sans font-black text-sm sm:text-base uppercase tracking-wider px-8 py-3 rounded-xl shadow-lg hover:bg-white transition-all"
               >
                 {ctaLink.name}
               </motion.a>

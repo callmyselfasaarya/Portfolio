@@ -54,25 +54,25 @@ export const TechStack = ({
   categories?: SkillCategory[]
 }) => {
   return (
-    <section id="tech-stack" className="w-full bg-[#0C0C0C] relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
-      <FadeIn delay={0} y={40} className="w-full flex flex-col justify-center items-center gap-4 mb-16 sm:mb-20 md:mb-28">
-        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(3rem,8vw,120px)] text-center">
+    <section id="tech-stack" className="w-full bg-[#0C0C0C] relative z-10 px-4 sm:px-8 md:px-10 py-16 sm:py-24 md:py-32">
+      <FadeIn delay={0} y={40} className="w-full flex flex-col justify-center items-center gap-3 sm:gap-4 mb-12 sm:mb-20 md:mb-28">
+        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(2.5rem,8vw,120px)] text-center">
           Tech Stack
         </h2>
-        <p className="text-[#D7E2EA]/60 text-lg md:text-xl font-light tracking-wide uppercase">
+        <p className="text-[#D7E2EA]/60 text-sm sm:text-lg md:text-xl font-light tracking-wide uppercase text-center">
           Tools I've shipped production work with
         </p>
       </FadeIn>
 
-      <div className="max-w-6xl mx-auto flex flex-col gap-12 items-center">
+      <div className="max-w-6xl mx-auto flex flex-col gap-10 sm:gap-12 items-center">
         {/* Skill Grid */}
-        <div className="w-full flex flex-col gap-10">
+        <div className="w-full flex flex-col gap-8 sm:gap-10">
           {categories.map((category, catIndex) => (
             <FadeIn key={category.label} delay={0.3 + (catIndex * 0.1)} className="w-full">
-              <h3 className="text-xl font-medium text-[#D7E2EA] mb-6 tracking-wide border-b border-[#D7E2EA]/10 pb-4">
+              <h3 className="text-lg sm:text-xl font-medium text-[#D7E2EA] mb-4 sm:mb-6 tracking-wide border-b border-[#D7E2EA]/10 pb-3 sm:pb-4">
                 {category.label}
               </h3>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-2.5 sm:gap-4">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
@@ -84,7 +84,7 @@ export const TechStack = ({
                     transition={{ delay: 0.1 + (skillIndex * 0.05), duration: 0.4 }}
                   >
                     <SpecularButton
-                      size="md"
+                      size="sm"
                       radius={24}
                       tint="#ffffff"
                       tintOpacity={0.06}
@@ -101,8 +101,8 @@ export const TechStack = ({
                       proximity={200}
                       autoAnimate={false}
                     >
-                      <TechIcon name={skill.icon} className="w-5 h-5 opacity-90 transition-opacity group-hover:opacity-100" />
-                      <span className="text-[#D7E2EA] font-light text-sm md:text-base">
+                      <TechIcon name={skill.icon} className="w-4 h-4 sm:w-5 sm:h-5 opacity-90 transition-opacity group-hover:opacity-100" />
+                      <span className="text-[#D7E2EA] font-light text-xs sm:text-sm md:text-base">
                         {skill.name}
                       </span>
                     </SpecularButton>

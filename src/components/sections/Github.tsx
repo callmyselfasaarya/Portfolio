@@ -51,10 +51,10 @@ export const GithubSection = () => {
   })) || [];
 
   return (
-    <section id="github" className="w-full bg-[#0C0C0C] relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
-      <FadeIn delay={0} y={40} className="w-full flex justify-center items-center gap-6 mb-16 sm:mb-20 md:mb-28">
-        <GithubIcon size={64} className="text-[#D7E2EA]" />
-        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(3rem,8vw,120px)]">
+    <section id="github" className="w-full bg-[#0C0C0C] relative z-10 px-4 sm:px-8 md:px-10 py-16 sm:py-24 md:py-32">
+      <FadeIn delay={0} y={40} className="w-full flex justify-center items-center gap-3 sm:gap-6 mb-12 sm:mb-20 md:mb-28">
+        <GithubIcon className="text-[#D7E2EA] w-10 h-10 sm:w-16 sm:h-16 shrink-0" />
+        <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(2.2rem,8vw,120px)] text-center">
           Open Source
         </h2>
       </FadeIn>
@@ -69,11 +69,11 @@ export const GithubSection = () => {
             enableSpotlight={true}
             spotlightRadius={300}
             glowColor="215, 226, 234"
-            className="space-y-12 sm:space-y-16"
+            className="space-y-8 sm:space-y-16"
           >
             
             {/* Stats Row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
               {[
                 { label: 'Followers', value: data.user.followers },
                 { label: 'Following', value: data.user.following },
@@ -88,10 +88,10 @@ export const GithubSection = () => {
                     clickEffect={true}
                     glowColor="215, 226, 234"
                     color="#120F17"
-                    className="h-full !min-h-[120px] p-6 md:p-8 flex flex-col items-center justify-center text-center rounded-[20px]"
+                    className="h-full !min-h-[100px] sm:!min-h-[120px] p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center text-center rounded-[20px]"
                   >
-                    <div className="text-4xl md:text-5xl font-black text-[#D7E2EA] mb-2 z-10 pointer-events-none">{stat.value}</div>
-                    <div className="text-sm text-[#D7E2EA]/60 uppercase tracking-widest z-10 pointer-events-none">{stat.label}</div>
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-black text-[#D7E2EA] mb-1 sm:mb-2 z-10 pointer-events-none">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-[#D7E2EA]/60 uppercase tracking-widest z-10 pointer-events-none">{stat.label}</div>
                   </MagicCard>
                 </FadeIn>
               ))}
