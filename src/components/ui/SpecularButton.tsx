@@ -83,6 +83,20 @@ const SpecularButton = ({
 
     const onPointerMove = (e: PointerEvent) => {
       const rect = btn.getBoundingClientRect();
+      // Fast-exit if pointer is far outside proximity box
+      if (
+        e.clientX < rect.left - proximity ||
+        e.clientX > rect.right + proximity ||
+        e.clientY < rect.top - proximity ||
+        e.clientY > rect.bottom + proximity
+      ) {
+        if (proximityT !== 0) {
+          proximityT = 0;
+          pointerAngle = null;
+        }
+        return;
+      }
+
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
@@ -103,7 +117,7 @@ const SpecularButton = ({
       proximityT = t * t * (3 - 2 * t);
     };
 
-    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
 
     let angle = 2.4;
     let idleAngle = 2.4;

@@ -26,6 +26,21 @@ export const Magnet: React.FC<MagnetProps> = ({
       if (!containerRef.current) return;
       
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+
+      // Fast-exit if pointer is far outside container padding box
+      if (
+        e.clientX < left - padding ||
+        e.clientX > left + width + padding ||
+        e.clientY < top - padding ||
+        e.clientY > top + height + padding
+      ) {
+        if (isActive) {
+          setIsActive(false);
+          setPosition({ x: 0, y: 0 });
+        }
+        return;
+      }
+
       const centerX = left + width / 2;
       const centerY = top + height / 2;
       
@@ -44,7 +59,7 @@ export const Magnet: React.FC<MagnetProps> = ({
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [padding, strength]);
 

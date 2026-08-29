@@ -1,59 +1,88 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 export const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isHovering = false;
+    let rafId: number;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Update inner dot instantly with 0ms input lag
+      dot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0) scale(${isHovering ? 0 : 1})`;
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
+    const onPointerOver = (e: PointerEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName.toLowerCase() === 'button' ||
-        target.tagName.toLowerCase() === 'a' ||
-        target.closest('button') ||
-        target.closest('a')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
+      if (!target) return;
+      const isClickable =
+        target.tagName === 'BUTTON' ||
+        target.tagName === 'A' ||
+        target.closest('button') !== null ||
+        target.closest('a') !== null;
+
+      if (isClickable) {
+        if (!isHovering) {
+          isHovering = true;
+          dot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0) scale(0)`;
+          ring.style.transform = `translate3d(${ringX - 24}px, ${ringY - 24}px, 0) scale(1.5)`;
+          ring.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        }
+      } else if (isHovering) {
+        isHovering = false;
+        dot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0) scale(1)`;
+        ring.style.transform = `translate3d(${ringX - 24}px, ${ringY - 24}px, 0) scale(1)`;
+        ring.style.backgroundColor = 'transparent';
       }
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
+    const render = () => {
+      // Silky linear interpolation for outer trailing ring
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
+
+      const ringScale = isHovering ? 1.5 : 1;
+      ring.style.transform = `translate3d(${ringX - 24}px, ${ringY - 24}px, 0) scale(${ringScale})`;
+
+      rafId = requestAnimationFrame(render);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('pointerover', onPointerOver, { passive: true });
+    rafId = requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('pointerover', onPointerOver);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isHovering ? 0 : 1,
-        }}
-        transition={{ type: 'spring', stiffness: 1000, damping: 28, mass: 0.1 }}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block will-change-transform"
+        style={{ transform: 'translate3d(-100px, -100px, 0)' }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-white/50 rounded-full pointer-events-none z-[9998] hidden md:block"
-        animate={{
-          x: mousePosition.x - 24,
-          y: mousePosition.y - 24,
-          scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 28, mass: 0.5 }}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 w-12 h-12 border border-white/50 rounded-full pointer-events-none z-[9998] hidden md:block will-change-transform transition-colors duration-200"
+        style={{ transform: 'translate3d(-100px, -100px, 0)' }}
       />
     </>
   );
 };
+
